@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@400;500;600;700&family=Courier+Prime:wght@400;700&family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200;300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -18,335 +18,872 @@
 
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-popover-border: hsl(var(--popover-border));
+  --color-popover-border: var(--popover-border);
 
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-primary-border: var(--primary-border);
 
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-secondary-border: var(--secondary-border);
 
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-muted-border: var(--muted-border);
-
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-accent-border: var(--accent-border);
-
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-destructive-border: var(--destructive-border);
 
   --font-sans: var(--app-font-sans);
   --font-serif: var(--app-font-serif);
   --font-mono: var(--app-font-mono);
   --font-anton: 'Anton', sans-serif;
+  --font-teko: 'Teko', sans-serif;
   --font-rajdhani: 'Rajdhani', sans-serif;
   --font-courier: 'Courier Prime', monospace;
   --font-oswald: 'Oswald', sans-serif;
 }
 
-/* LIGHT MODE */
 :root {
-  --background: 90 19% 4%; /* #0a0c08 */
-  --foreground: 48 33% 91%; /* #f0ede0 */
+  --background: 90 19% 4%;
+  --foreground: 48 33% 91%;
   --border: 90 19% 10%;
-  --card: 100 30% 8%; /* #111a0e */
+  --card: 270 25% 8%;
   --card-foreground: 48 33% 91%;
-  --card-border: 25 100% 50%; /* orange border */
-  
+  --card-border: 25 100% 50%;
   --popover: 90 19% 4%;
   --popover-foreground: 48 33% 91%;
-  --popover-border: 90 19% 10%;
-  
-  --primary: 25 100% 50%; /* #ff6b00 */
+  --primary: 25 100% 50%;
   --primary-foreground: 90 19% 4%;
-  --secondary: 48 100% 48%; /* #f5c400 */
+  --secondary: 48 100% 48%;
   --secondary-foreground: 90 19% 4%;
-  
-  --muted: 78 19% 51%; /* #8a9a6a */
+  --muted: 78 19% 51%;
   --muted-foreground: 48 33% 91%;
-  --accent: 110 100% 54%; /* #39ff14 */
+  --accent: 110 100% 54%;
   --accent-foreground: 90 19% 4%;
-  --destructive: 0 100% 40%; /* #cc0000 */
+  --destructive: 0 100% 40%;
   --destructive-foreground: 0 0% 100%;
-  
   --input: 90 19% 10%;
   --ring: 25 100% 50%;
-  
-  --sidebar: 90 19% 4%;
-  --sidebar-foreground: 48 33% 91%;
-  --sidebar-border: 90 19% 10%;
-  --sidebar-primary: 25 100% 50%;
-  --sidebar-primary-foreground: 90 19% 4%;
-  --sidebar-accent: 78 19% 51%;
-  --sidebar-accent-foreground: 90 19% 4%;
-  --sidebar-ring: 25 100% 50%;
-
   --app-font-sans: 'Rajdhani', sans-serif;
-  --app-font-serif: 'Anton', sans-serif;
+  --app-font-serif: 'Teko', sans-serif;
   --app-font-mono: 'Courier Prime', monospace;
   --radius: .5rem;
 }
 
-.dark {
-  --background: 90 19% 4%; /* #0a0c08 */
-  --foreground: 48 33% 91%; /* #f0ede0 */
-  --border: 90 19% 10%;
-  --card: 100 30% 8%; /* #111a0e */
-  --card-foreground: 48 33% 91%;
-  --card-border: 25 100% 50%;
-  
-  --popover: 90 19% 4%;
-  --popover-foreground: 48 33% 91%;
-  --popover-border: 90 19% 10%;
-  
-  --primary: 25 100% 50%; /* #ff6b00 */
-  --primary-foreground: 90 19% 4%;
-  --secondary: 48 100% 48%; /* #f5c400 */
-  --secondary-foreground: 90 19% 4%;
-  
-  --muted: 78 19% 51%; /* #8a9a6a */
-  --muted-foreground: 48 33% 91%;
-  --accent: 110 100% 54%; /* #39ff14 */
-  --accent-foreground: 90 19% 4%;
-  --destructive: 0 100% 40%; /* #cc0000 */
-  --destructive-foreground: 0 0% 100%;
-  
-  --input: 90 19% 10%;
-  --ring: 25 100% 50%;
-  
-  --sidebar: 90 19% 4%;
-  --sidebar-foreground: 48 33% 91%;
-  --sidebar-border: 90 19% 10%;
-  --sidebar-primary: 25 100% 50%;
-  --sidebar-primary-foreground: 90 19% 4%;
-  --sidebar-accent: 78 19% 51%;
-  --sidebar-accent-foreground: 90 19% 4%;
-  --sidebar-ring: 25 100% 50%;
-}
-
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background: radial-gradient(circle at center, #111a0e 0%, #0a0c08 100%);
+    background: #07060e;
+    overflow-x: hidden;
   }
 }
 
-.bg-grain {
+/* ============================================
+   ANIM 1 — GTA LOADING SCREEN
+   ============================================ */
+@keyframes loadingFadeOut {
+  0%, 80% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+@keyframes loadingBarFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes loadingTextFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes silhouetteReveal {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+#gta-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(180deg, #07060e 0%, #1a0a2e 40%, #2d1054 70%, #1a0a2e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 80px;
+  animation: loadingFadeOut 0.5s ease-out 3.5s forwards;
+  pointer-events: none;
+}
+#gta-loading.hidden { display: none; }
+.loading-silhouette-wrapper {
+  position: absolute;
+  bottom: 120px;
+  left: 0; right: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  height: 340px;
+}
+.loading-silhouette-trump {
+  animation: silhouetteReveal 0.8s ease-out 0.3s both;
+}
+.loading-silhouette-cj {
+  animation: silhouetteReveal 0.8s ease-out 0.6s both;
+}
+.loading-bar-wrap {
+  width: 340px;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f5c400, #ff6b00);
+  animation: loadingBarFill 3.2s ease-in-out forwards;
+  box-shadow: 0 0 10px #f5c400;
+}
+.loading-title {
+  font-family: 'Teko', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #f5c400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 40px rgba(245,196,0,0.5);
+  animation: loadingTextFlicker 1.5s ease-in-out 1s infinite;
+  position: relative;
+  z-index: 2;
+}
+.loading-subtitle {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  color: rgba(240,237,224,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+.loading-tip {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.65rem;
+  color: rgba(138,154,106,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   ANIM 2 — BACKGROUND GRADIENT PULSE
+   ============================================ */
+@keyframes bgPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.bg-master {
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(100,30,180,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(204,0,0,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(255,107,0,0.06) 0%, transparent 50%),
+    linear-gradient(135deg, #07060e 0%, #0d0918 30%, #0a0c08 60%, #07060e 100%);
+  min-height: 100vh;
   position: relative;
 }
-.bg-grain::before {
-  content: "";
-  position: absolute;
+
+/* Film grain overlay */
+.bg-master::before {
+  content: '';
+  position: fixed;
   inset: 0;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+  opacity: 0.4;
 }
 
-.map-grid {
-  background-size: 40px 40px;
+/* Map grid */
+.bg-master::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-size: 60px 60px;
   background-image: 
-    linear-gradient(to right, rgba(138, 154, 106, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(138, 154, 106, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(100,30,180,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(100,30,180,0.04) 1px, transparent 1px);
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes flash {
-  0%, 98%, 100% { opacity: 0; }
-  99% { opacity: 1; background: white; }
+/* ============================================
+   ANIM 3 — SCANLINES
+   ============================================ */
+@keyframes scanMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0; right: 0;
+  height: 200%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+  animation: scanMove 8s linear infinite;
+}
+
+/* ============================================
+   ANIM 4 — STATIC FLASH
+   ============================================ */
+@keyframes staticFlash {
+  0%, 96%, 100% { opacity: 0; }
+  97% { opacity: 0.15; background: rgba(200,180,255,0.3); }
+  98% { opacity: 0; }
+  99% { opacity: 0.08; background: white; }
 }
 .static-flash {
-  animation: flash 35s infinite;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  animation: staticFlash 30s infinite;
+}
+
+/* ============================================
+   ANIM 5 — GLITCH TEXT
+   ============================================ */
+@keyframes glitch {
+  0%, 88%, 100% { 
+    text-shadow: none; 
+    transform: translate(0); 
+    clip-path: none;
+  }
+  89% { 
+    text-shadow: 3px 0 0 #ff6b00, -3px 0 0 #8b00ff; 
+    transform: translate(-3px, 1px) skewX(-1deg); 
+  }
+  90% { 
+    text-shadow: -3px 0 0 #ff6b00, 3px 0 0 #cc0000; 
+    transform: translate(3px, -2px) skewX(1deg); 
+  }
+  91% { 
+    text-shadow: 1px 0 0 #f5c400; 
+    transform: translate(-1px, 0); 
+  }
+  92%, 100% { 
+    text-shadow: none; 
+    transform: translate(0); 
+  }
+}
+@keyframes glitchBar {
+  0%, 87%, 100% { opacity: 0; }
+  88% { opacity: 1; top: 30%; height: 4px; }
+  89% { opacity: 0; }
+  90% { opacity: 1; top: 60%; height: 2px; }
+  91% { opacity: 0; }
+}
+.glitch-text {
+  animation: glitch 9s infinite;
+  position: relative;
+}
+.glitch-text::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: #ff6b00;
+  opacity: 0;
+  animation: glitchBar 9s infinite;
   pointer-events: none;
 }
 
-@keyframes glitch {
-  0%, 100% { text-shadow: 0 0 0 transparent; transform: translate(0); }
-  1% { text-shadow: 2px 0 0 #ff6b00, -2px 0 0 #cc0000; transform: translate(-2px, 1px); }
-  2% { text-shadow: -2px 0 0 #ff6b00, 2px 0 0 #cc0000; transform: translate(2px, -1px); }
-  3% { text-shadow: 0 0 0 transparent; transform: translate(0); }
-}
-.glitch-text {
-  animation: glitch 10s infinite;
-}
-
+/* ============================================
+   ANIM 6 — TICKER MARQUEE
+   ============================================ */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.animate-ticker {
+.ticker-track {
   display: flex;
-  width: 200%;
-  animation: marquee 20s linear infinite;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
 }
+.ticker-track:hover { animation-play-state: paused; }
 
-@keyframes flyLeft {
-  from { transform: translateX(100vw); }
-  to { transform: translateX(-20vw); }
+/* ============================================
+   ANIM 7 — MISSILE FLY
+   ============================================ */
+@keyframes missileRight {
+  0% { transform: translateX(-150px) translateY(0px); opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(110vw) translateY(-20px); opacity: 0; }
 }
-.missile {
-  position: absolute;
-  animation: flyLeft linear infinite;
-  z-index: 10;
+@keyframes smokeExpand {
+  0% { opacity: 0.8; width: 0; }
+  100% { opacity: 0; width: 120px; }
 }
-.m-1 { top: 20%; animation-duration: 12s; }
-.m-2 { top: 45%; animation-duration: 8s; animation-delay: 3s; }
-.m-3 { top: 70%; animation-duration: 15s; animation-delay: 7s; }
-
-.smoke-trail {
+.missile-anim {
   position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  animation: missileRight linear infinite;
+  z-index: 15;
+}
+.missile-anim.m1 { top: 18%; animation-duration: 11s; animation-delay: 0s; }
+.missile-anim.m2 { top: 42%; animation-duration: 7s; animation-delay: 4s; font-size: 2rem; }
+.missile-anim.m3 { top: 65%; animation-duration: 14s; animation-delay: 8s; }
+.missile-anim .trail {
+  position: absolute;
+  right: 100%;
   top: 50%;
-  right: -20px;
-  width: 30px;
-  height: 2px;
-  background: repeating-linear-gradient(to right, rgba(255,255,255,0.8) 0, rgba(255,255,255,0.8) 2px, transparent 2px, transparent 6px);
-  opacity: 0.5;
+  transform: translateY(-50%);
+  height: 3px;
+  background: linear-gradient(to left, rgba(255,150,0,0.9), transparent);
+  animation: smokeExpand 0.5s ease-out infinite;
 }
 
-@keyframes radar {
+/* ============================================
+   ANIM 8 — CJ HEAD GRAB
+   ============================================ */
+@keyframes cjHeadGrab {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  10% { transform: rotate(-5deg) scale(1.05); }
+  20% { transform: rotate(5deg) scale(0.98); }
+  30% { transform: rotate(-3deg) scale(1.02); }
+  40% { transform: rotate(0deg) scale(1); }
+}
+@keyframes cjHandRaise {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  15% { transform: translateY(-8px) rotate(-20deg); }
+  30% { transform: translateY(-12px) rotate(-30deg); }
+  50% { transform: translateY(-8px) rotate(-25deg); }
+  70% { transform: translateY(-4px) rotate(-10deg); }
+  85% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes cjBodySway {
+  0%, 100% { transform: skewX(0deg); }
+  25% { transform: skewX(-2deg); }
+  75% { transform: skewX(2deg); }
+}
+.cj-figure {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  font-size: 2.5rem;
+  line-height: 1;
+  animation: cjBodySway 3s ease-in-out infinite;
+  cursor: default;
+  user-select: none;
+}
+.cj-hand { animation: cjHandRaise 3s ease-in-out infinite; display: block; margin-bottom: -0.3em; transform-origin: bottom center; }
+.cj-head { animation: cjHeadGrab 3s ease-in-out infinite; display: block; }
+
+/* ============================================
+   ANIM 9 — SHIP EXPLOSION
+   ============================================ */
+@keyframes shipRock {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  20% { transform: rotate(-3deg) translateY(-4px); }
+  40% { transform: rotate(4deg) translateY(2px); }
+  60% { transform: rotate(-2deg) translateY(-2px); }
+  80% { transform: rotate(1deg) translateY(1px); }
+}
+@keyframes explosion {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.4) rotate(180deg); opacity: 1; }
+  100% { transform: scale(2) rotate(360deg); opacity: 0; }
+}
+@keyframes missileHitPath {
+  0% { transform: translate(0, -80px) rotate(45deg); opacity: 1; }
+  80% { transform: translate(0, 0) rotate(45deg); opacity: 1; }
+  100% { transform: translate(0, 10px) rotate(45deg); opacity: 0; }
+}
+.ship-scene {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.ship-emoji {
+  font-size: 2.2rem;
+  animation: shipRock 4s ease-in-out infinite;
+  display: inline-block;
+}
+.explosion-emoji {
+  font-size: 1.5rem;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  animation: explosion 1.5s ease-out infinite;
+  animation-delay: 2s;
+}
+.missile-hit {
+  font-size: 1rem;
+  position: absolute;
+  top: -50px;
+  right: 10px;
+  animation: missileHitPath 4s ease-in infinite;
+  animation-delay: 1s;
+}
+
+/* ============================================
+   ANIM 10 — RADAR SWEEP
+   ============================================ */
+@keyframes radarSweep {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.animate-radar {
-  animation: radar 7s linear infinite;
-  transform-origin: center;
+@keyframes radarPing {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.radar-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(57,255,20,0.3);
+  overflow: hidden;
+  background: radial-gradient(circle, rgba(57,255,20,0.05) 0%, transparent 70%);
+}
+.radar-line {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(57,255,20,0.9), transparent);
+  transform-origin: left center;
+  animation: radarSweep 6s linear infinite;
+}
+.radar-ring {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  border: 1px solid rgba(57,255,20,0.2);
+}
+.radar-ping {
+  position: absolute;
+  top: 35%; left: 40%;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #39ff14;
+  box-shadow: 0 0 6px #39ff14;
+  animation: radarPing 6s linear infinite;
+  animation-delay: 3s;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+/* ============================================
+   ANIM 11 — LIVE DOT PULSE
+   ============================================ */
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(204,0,0,0.8); }
+  50% { opacity: 0.4; box-shadow: 0 0 0 6px rgba(204,0,0,0); }
 }
-.animate-pulse-fast {
-  animation: pulse 1s infinite;
+.live-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #cc0000;
+  animation: livePulse 1s ease-in-out infinite;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
+/* ============================================
+   ANIM 12 — MISSION PASSED
+   ============================================ */
 @keyframes missionPassed {
-  0% { transform: scale(0.8); opacity: 0; }
-  10% { transform: scale(1.1); opacity: 1; }
-  20% { transform: scale(1); opacity: 1; }
-  80% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.2); opacity: 0; }
+  0% { 
+    transform: scale(0.3) rotate(-5deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  15% { 
+    transform: scale(1.15) rotate(1deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  25% { transform: scale(0.95) rotate(-0.5deg); opacity: 1; }
+  35% { transform: scale(1) rotate(0deg); opacity: 1; }
+  75% { transform: scale(1) rotate(0deg); opacity: 1; }
+  90% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1.3); opacity: 0; filter: blur(4px); }
 }
-.mission-passed-anim {
-  animation: missionPassed 2s forwards;
+@keyframes missionStars {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  30% { transform: scale(1.2) rotate(360deg); opacity: 1; }
+  70% { transform: scale(1) rotate(720deg); opacity: 1; }
+  100% { transform: scale(0) rotate(1080deg); opacity: 0; }
+}
+.mission-passed-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.7);
+  animation: missionPassed 2.5s ease-out forwards;
+  pointer-events: none;
+}
+.mission-passed-card {
+  background: linear-gradient(135deg, #1a0a2e, #07060e);
+  border: 3px solid #f5c400;
+  border-radius: 4px;
+  padding: 32px 56px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(245,196,0,0.4), inset 0 0 30px rgba(245,196,0,0.05);
+  position: relative;
+}
+.mission-passed-text {
+  font-family: 'Teko', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #f5c400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 30px rgba(245,196,0,0.8);
+  line-height: 1;
+}
+.mission-passed-sub {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  color: rgba(240,237,224,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-top: 8px;
+}
+.mission-star {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: missionStars 2.5s ease-out forwards;
+}
+.mission-star:nth-child(1) { top: -10px; left: 10px; animation-delay: 0.1s; }
+.mission-star:nth-child(2) { top: -10px; right: 10px; animation-delay: 0.2s; }
+.mission-star:nth-child(3) { bottom: -10px; left: 10px; animation-delay: 0.15s; }
+.mission-star:nth-child(4) { bottom: -10px; right: 10px; animation-delay: 0.25s; }
+
+/* ============================================
+   ANIM 13 — TIMELINE ENTRY SLIDE UP
+   ============================================ */
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.timeline-entry {
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.timeline-entry.visible {
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/**
- * Using the elevate system.
- * Automatic contrast adjustment.
- *
- * <element className="hover-elevate" />
- * <element className="active-elevate-2" />
- *
- * // Using the tailwind utility when a data attribute is "on"
- * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
- * // Or manually controlling the toggle state
- * <element className="toggle-elevate toggle-elevated" />
- *
- * Elevation systems have to handle many states.
- * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
- * - toggled or not
- * - focused or not (this is not handled with these utilities)
- *
- * Even without handling focused or not, this is six possible combinations that
- * need to be distinguished from eachother visually.
- */
-@layer utilities {
+/* ============================================
+   ANIM 14 — CARD HOVER GLOW
+   ============================================ */
+.card-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+.card-hover::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  background: linear-gradient(135deg, rgba(255,107,0,0.2), rgba(139,0,255,0.2));
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,107,0,0.6) !important;
+  box-shadow: 0 0 20px rgba(255,107,0,0.35), 0 0 40px rgba(139,0,255,0.15);
+}
+.card-hover:hover::after { opacity: 1; }
 
-  /* Hide ugly search cancel button in Chrome until we can style it properly */
-  input[type="search"]::-webkit-search-cancel-button {
-    @apply hidden;
-  }
+/* ============================================
+   ANIM 15 — BREAKING NEWS CROSSFADE HEADLINES
+   ============================================ */
+@keyframes headlineFadeIn {
+  0% { opacity: 0; transform: translateX(30px); }
+  15%, 85% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(-30px); }
+}
+.headline-rotate span {
+  position: absolute;
+  white-space: nowrap;
+  animation: headlineFadeIn 5s ease-in-out infinite;
+}
 
-  /* Placeholder styling for contentEditable div */
-  [contenteditable][data-placeholder]:empty::before {
-    content: attr(data-placeholder);
-    color: hsl(var(--muted-foreground));
-    pointer-events: none;
-  }
+/* ============================================
+   ANIM 16 — PURPLE GLOW PULSE ON NAV
+   ============================================ */
+@keyframes navGlow {
+  0%, 100% { box-shadow: 0 2px 0 #cc0000, 0 0 20px rgba(139,0,255,0.1); }
+  50% { box-shadow: 0 2px 0 #cc0000, 0 0 40px rgba(139,0,255,0.25); }
+}
+.nav-glow {
+  animation: navGlow 4s ease-in-out infinite;
+}
 
-  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
-   * buttons/badges can remove the automatic brightness adjustment on interactions
-   * and program their own. */
-  .no-default-hover-elevate {}
+/* === BROADCAST UI ELEMENTS === */
+.broadcast-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.bt-live { background: #cc0000; color: white; }
+.bt-breaking { background: #cc0000; color: white; }
+.bt-update { background: #ff6b00; color: black; }
+.bt-world { background: #1a0a2e; color: #8b5cf6; border: 1px solid #8b5cf6; }
+.bt-markets { background: #0d2818; color: #39ff14; border: 1px solid rgba(57,255,20,0.4); }
+.bt-developing { background: #f5c400; color: black; }
+.bt-cam { background: rgba(0,0,0,0.7); color: rgba(240,237,224,0.6); border: 1px solid rgba(240,237,224,0.15); }
 
-  .no-default-active-elevate {}
+.lower-third {
+  background: linear-gradient(90deg, rgba(204,0,0,0.95), rgba(139,0,0,0.8) 60%, transparent);
+  padding: 6px 16px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 4px solid #f5c400;
+}
+.lower-third-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+.lower-third-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
 
+.corner-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem;
+  color: rgba(240,237,224,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 1px solid rgba(240,237,224,0.1);
+  padding: 2px 5px;
+  border-radius: 2px;
+}
 
-  /**
-   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
-   * This way they can stack/compound. Both will overlap the parent's borders!
-   * So borders will be automatically adjusted both on toggle, and hover/active,
-   * and they will be compounded.
-   */
-  .toggle-elevate::before,
-  .toggle-elevate-2::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
-    border-radius: inherit;
-    z-index: -1;
-    /* sits behind content but above backdrop */
-  }
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+.signal-bars span {
+  width: 3px;
+  background: #39ff14;
+  border-radius: 1px;
+  opacity: 0.8;
+}
+.signal-bars span:nth-child(1) { height: 4px; }
+.signal-bars span:nth-child(2) { height: 7px; }
+.signal-bars span:nth-child(3) { height: 10px; }
+.signal-bars span:nth-child(4) { height: 14px; opacity: 0.3; }
 
-  .toggle-elevate.toggle-elevated::before {
-    background-color: var(--elevate-2);
-  }
+/* === GTA BUTTONS === */
+.btn-gta-yellow {
+  background: #f5c400;
+  color: #07060e;
+  font-family: 'Teko', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 10px 32px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+.btn-gta-yellow:hover {
+  background: #ffd633;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245,196,0,0.4);
+}
+.btn-gta-red {
+  background: #cc0000;
+  color: white;
+  font-family: 'Teko', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 10px 32px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+.btn-gta-red:hover {
+  background: #e00000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(204,0,0,0.4);
+}
+.btn-gta-orange {
+  background: #ff6b00;
+  color: #07060e;
+  font-family: 'Teko', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 10px 32px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+.btn-gta-orange:hover {
+  background: #ff8533;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,107,0,0.5);
+}
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
-  .border.toggle-elevate::before {
-    inset: -1px;
-  }
+/* Nav pill buttons */
+.nav-pill {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+.nav-pill-buy { background: #ff6b00; color: #07060e; }
+.nav-pill-buy:hover { background: #ff8533; box-shadow: 0 0 12px rgba(255,107,0,0.5); }
+.nav-pill-chart { background: #cc0000; color: white; }
+.nav-pill-chart:hover { background: #e00000; box-shadow: 0 0 12px rgba(204,0,0,0.5); }
+.nav-pill-archive { background: #f5c400; color: #07060e; }
+.nav-pill-archive:hover { background: #ffd633; box-shadow: 0 0 12px rgba(245,196,0,0.5); }
+.nav-pill-x { background: rgba(139,0,255,0.15); color: rgba(240,237,224,0.8); border: 1px solid rgba(139,0,255,0.4); }
+.nav-pill-x:hover { background: rgba(139,0,255,0.3); border-color: rgba(139,0,255,0.7); }
 
-  /* Does not work on elements with overflow:hidden! */
-  .hover-elevate:not(.no-default-hover-elevate),
-  .active-elevate:not(.no-default-active-elevate),
-  .hover-elevate-2:not(.no-default-hover-elevate),
-  .active-elevate-2:not(.no-default-active-elevate) {
-    position: relative;
-    z-index: 0;
-  }
+/* Contract box */
+.contract-box {
+  background: linear-gradient(135deg, rgba(139,0,255,0.08), rgba(255,107,0,0.05));
+  border: 1px solid rgba(255,107,0,0.4);
+  border-radius: 4px;
+  padding: 16px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.contract-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6b00, #8b00ff, #ff6b00);
+  background-size: 200%;
+  animation: marquee 3s linear infinite;
+}
 
-  .hover-elevate:not(.no-default-hover-elevate)::after,
-  .active-elevate:not(.no-default-active-elevate)::after,
-  .hover-elevate-2:not(.no-default-hover-elevate)::after,
-  .active-elevate-2:not(.no-default-active-elevate)::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
-    border-radius: inherit;
-    z-index: 999;
-    /* sits in front of content */
-  }
+/* Token stats */
+.stat-card {
+  background: rgba(139,0,255,0.06);
+  border: 1px solid rgba(139,0,255,0.2);
+  padding: 12px 20px;
+  text-align: center;
+  border-radius: 4px;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
 
-  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
-  .active-elevate:active:not(.no-default-active-elevate)::after {
-    background-color: var(--elevate-1);
-  }
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,0,255,0.4), rgba(255,107,0,0.4), transparent);
+}
 
-  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
-  .active-elevate-2:active:not(.no-default-active-elevate)::after {
-    background-color: var(--elevate-2);
-  }
+/* Purple gradient sections */
+.section-purple {
+  background: linear-gradient(180deg, rgba(139,0,255,0.04) 0%, transparent 100%);
+}
 
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
-    inset: -1px;
-  }
+/* Breaking news strap */
+.news-strap {
+  background: linear-gradient(90deg, #cc0000 0%, #990000 100%);
+  border-bottom: 2px solid #f5c400;
+}
+
+/* Responsive missiles */
+@media (max-width: 768px) {
+  .missile-anim.m1 { display: none; }
+  .missile-anim.m3 { display: none; }
+}
+
+/* Purple text gradient */
+.text-purple-gradient {
+  background: linear-gradient(135deg, #8b00ff, #cc00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* GTA-style number */
+.gta-step-num {
+  font-family: 'Teko', sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, rgba(245,196,0,0.15), rgba(255,107,0,0.1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  pointer-events: none;
 }
