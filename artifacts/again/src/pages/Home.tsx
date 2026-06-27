@@ -406,31 +406,31 @@ export default function Home() {
               <button onClick={() => document.getElementById("chart")?.scrollIntoView({ behavior: "smooth" })} className="btn-gta btn-red" style={{ fontSize: "1rem", padding: "13px 28px" }}>Chart</button>
             </div>
 
-            {/* CA box */}
-            <div className="ca-box border-pulse" style={{ maxWidth: "480px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "10px" }}>
+            {/* CA — open, no box */}
+            <div style={{ maxWidth: "480px", borderLeft: "3px solid #ff6b00", paddingLeft: "14px", marginBottom: "24px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
                 <span className="live-dot"/>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.54rem", color: "rgba(240,234,216,0.3)", letterSpacing: "0.22em" }}>CONTRACT ADDRESS · SOLANA</span>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.52rem", color: "rgba(240,234,216,0.28)", letterSpacing: "0.22em" }}>CONTRACT · SOLANA</span>
               </div>
-              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.72rem", color: "#f0ead8", wordBreak: "break-all", lineHeight: 1.5, marginBottom: "14px", opacity: 0.85 }}>{CA}</div>
+              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.7rem", color: "rgba(240,234,216,0.65)", wordBreak: "break-all", lineHeight: 1.6, marginBottom: "12px" }}>{CA}</div>
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                <button onClick={copyCA} className="btn-gta btn-orange" style={{ fontSize: "0.85rem", padding: "9px 22px" }}>{copyLabel}</button>
-                <a href={X_URL} target="_blank" className="btn-gta btn-pink" style={{ fontSize: "0.85rem", padding: "9px 20px", display: "inline-flex", alignItems: "center", gap: "5px" }}>
-                  <SiX size={12}/> Community
+                <button onClick={copyCA} className="btn-gta btn-orange" style={{ fontSize: "0.82rem", padding: "8px 20px" }}>{copyLabel}</button>
+                <a href={X_URL} target="_blank" className="btn-gta btn-pink" style={{ fontSize: "0.82rem", padding: "8px 18px", display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                  <SiX size={11}/> Community
                 </a>
               </div>
             </div>
 
-            {/* Stats */}
-            <div style={{ display: "flex", gap: "10px", marginTop: "20px", flexWrap: "wrap" }}>
+            {/* Stats — inline, no pills */}
+            <div style={{ display: "flex", gap: "28px", flexWrap: "wrap", paddingTop: "4px" }}>
               {[
                 { v: "1B",  l: "Supply",  c: "#ff6b00" },
                 { v: "0%",  l: "Tax",     c: "#e91e8c" },
                 { v: "SOL", l: "Chain",   c: "#93c5fd" },
               ].map((s, i) => (
-                <div key={i} className="stat-pill">
-                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.6rem", color: s.c, lineHeight: 1 }}>{s.v}</div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.5rem", color: "rgba(107,126,168,0.7)", letterSpacing: "0.2em", textTransform: "uppercase" }}>{s.l}</div>
+                <div key={i} style={{ textAlign: "left" }}>
+                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", color: s.c, lineHeight: 1 }}>{s.v}</div>
+                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.48rem", color: "rgba(107,126,168,0.5)", letterSpacing: "0.22em", textTransform: "uppercase", marginTop: "2px" }}>{s.l}</div>
                 </div>
               ))}
             </div>
@@ -647,15 +647,7 @@ export default function Home() {
             THE <span style={{ color: "#ff6b00", textShadow: "3px 3px 0 #6a2800" }}>CHART</span>
           </h2>
 
-          <div className="border-pulse" style={{
-            border: "1px solid rgba(255,107,0,0.3)",
-            background: "#07091a",
-            marginBottom: "22px", overflow: "hidden",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "9px 14px", background: "rgba(0,0,0,0.4)", borderBottom: "1px solid rgba(255,107,0,0.12)" }}>
-              <span className="live-dot" style={{ width: "6px", height: "6px" }}/>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.56rem", color: "rgba(240,234,216,0.35)", letterSpacing: "0.14em", textTransform: "uppercase" }}>$AGAIN / USD &nbsp;·&nbsp; Solana</span>
-            </div>
+          <div style={{ marginBottom: "22px", overflow: "hidden" }}>
             <div dangerouslySetInnerHTML={{ __html: `<style>#dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}@media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}#dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}</style><div id="dexscreener-embed"><iframe src="https://dexscreener.com/solana/HTWiEMpyyqRmA4o3jGioqMCtKXN8Ca5WGogUT1PYZP64?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe></div>` }}/>
           </div>
 
@@ -686,28 +678,21 @@ export default function Home() {
             LATEST <span style={{ color: "#ff6b00", textShadow: "4px 4px 0 #6a2800, 0 0 50px rgba(255,107,0,0.25)" }}>EVIDENCE</span>
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "18px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "24px" }}>
             {ARCHIVE.map((item, i) => (
-              <div key={i} className="tilt-card" style={{
-                background: "linear-gradient(135deg, rgba(255,107,0,0.06), rgba(12,18,32,0.97))",
-                border: "1px solid rgba(255,107,0,0.18)",
-                overflow: "hidden", position: "relative",
-                transition: "border-color 0.3s, box-shadow 0.3s",
-              }}>
-                <div style={{ position: "absolute", top: "8px", right: "8px", zIndex: 3 }}>
+              <div key={i} className="tilt-card" style={{ overflow: "hidden", position: "relative" }}>
+                <div style={{ position: "absolute", top: "10px", left: "10px", zIndex: 3 }}>
                   <span className={badgeClass[item.tag] || "badge-update"}>{item.tag}</span>
                 </div>
                 <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#06080f" }}>
                   <img
                     src={item.img} alt={item.cap}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.55s ease", filter: "contrast(1.05) saturate(0.88)" }}
-                    onMouseOver={e => (e.currentTarget.style.transform = "scale(1.04)")}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.6s ease", filter: "contrast(1.05) saturate(0.85)" }}
+                    onMouseOver={e => (e.currentTarget.style.transform = "scale(1.05)")}
                     onMouseOut={e => (e.currentTarget.style.transform = "scale(1)")}
                   />
                 </div>
-                <div style={{ padding: "13px 15px", borderTop: "1px solid rgba(255,107,0,0.1)" }}>
-                  <p style={{ fontFamily: "'Teko', sans-serif", fontWeight: 500, fontSize: "1.15rem", color: "#f0ead8", letterSpacing: "0.04em", textTransform: "uppercase" }}>{item.cap}</p>
-                </div>
+                <p style={{ fontFamily: "'Teko', sans-serif", fontWeight: 500, fontSize: "1.1rem", color: "rgba(240,234,216,0.55)", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: "10px", paddingLeft: "2px" }}>{item.cap}</p>
               </div>
             ))}
           </div>
@@ -739,28 +724,29 @@ export default function Home() {
             <div style={{ color: "#ff6b00", textShadow: "3px 3px 0 #6a2800, 0 0 40px rgba(255,107,0,0.3)" }}>IT GOES AGAIN.</div>
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: "18px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
             {[
-              { n: "01", title: "Get a Wallet",  body: "Download Phantom or Solflare.\nCreate a wallet.\nSave your seed phrase.",
+              { n: "01", title: "Get a Wallet",  body: "Download Phantom or Solflare. Save your seed phrase.",
                 links: [{ l: "Phantom", h: "https://phantom.app/" }, { l: "Solflare", h: "https://solflare.com/" }], c: "#ff6b00" },
               { n: "02", title: "Get SOL",       body: "Fund your wallet with SOL from any exchange.", links: [], c: "#e91e8c" },
-              { n: "03", title: "Hit Jupiter",   body: "Open Jupiter, paste the contract, swap SOL for $AGAIN.",
+              { n: "03", title: "Hit Jupiter",   body: "Paste the contract, swap SOL for $AGAIN.",
                 links: [{ l: "Open Jupiter", h: BUY_URL }], c: "#93c5fd" },
-              { n: "04", title: "Hold.",          body: "Welcome back.\nHere we go again.", links: [], c: "#dc2626" },
+              { n: "04", title: "Hold.",          body: "Welcome back. Here we go again.", links: [], c: "#dc2626" },
             ].map((step, i) => (
-              <div key={i} className="tilt-card" style={{
-                background: `linear-gradient(135deg, rgba(${step.c === "#ff6b00" ? "255,107,0" : step.c === "#e91e8c" ? "233,30,140" : step.c === "#93c5fd" ? "147,197,253" : "220,38,38"},0.07), rgba(10,16,32,0.96))`,
-                border: `1px solid rgba(${step.c === "#ff6b00" ? "255,107,0" : step.c === "#e91e8c" ? "233,30,140" : step.c === "#93c5fd" ? "147,197,253" : "220,38,38"},0.22)`,
-                padding: "26px 22px", position: "relative", overflow: "hidden",
+              <div key={i} style={{
+                display: "flex", gap: "24px", alignItems: "flex-start",
+                padding: "28px 0",
+                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.05)" : "none",
               }}>
-                <div style={{ position: "absolute", top: "-6px", right: "10px", fontFamily: "'Bebas Neue', sans-serif", fontSize: "4.5rem", color: "rgba(255,255,255,0.03)", lineHeight: 1, pointerEvents: "none" }}>{step.n}</div>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: step.c, letterSpacing: "0.18em", fontWeight: 700, marginBottom: "7px", textTransform: "uppercase" }}>{step.n} —</div>
-                <div style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, fontSize: "1.4rem", color: step.c, textTransform: "uppercase", marginBottom: "12px", lineHeight: 1, letterSpacing: "0.04em" }}>{step.title}</div>
-                <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "0.98rem", color: "rgba(240,234,216,0.7)", lineHeight: 1.65, whiteSpace: "pre-line", marginBottom: step.links.length ? "14px" : 0 }}>{step.body}</p>
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                  {step.links.map((lk, j) => (
-                    <a key={j} href={lk.h} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "0.75rem", padding: "7px 15px" }}>{lk.l}</a>
-                  ))}
+                <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "3.5rem", color: step.c, lineHeight: 1, opacity: 0.35, flexShrink: 0, width: "60px", textAlign: "right" }}>{step.n}</div>
+                <div style={{ flex: 1, paddingTop: "4px" }}>
+                  <div style={{ fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif", fontSize: "1.8rem", color: step.c, textTransform: "uppercase", lineHeight: 1, letterSpacing: "0.03em", marginBottom: "8px" }}>{step.title}</div>
+                  <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1rem", color: "rgba(240,234,216,0.55)", lineHeight: 1.6, marginBottom: step.links.length ? "14px" : 0 }}>{step.body}</p>
+                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    {step.links.map((lk, j) => (
+                      <a key={j} href={lk.h} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "0.75rem", padding: "7px 16px" }}>{lk.l}</a>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
