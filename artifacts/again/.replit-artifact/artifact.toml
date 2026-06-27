@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "$AGAIN — Here We Go Again"
+version = "1.0.0"
+id = "artifacts/again"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22979
+
+[services.development]
+run = "pnpm --filter @workspace/again run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/again", "run", "build" ]
+publicDir = "artifacts/again/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22979"
+BASE_PATH = "/"
