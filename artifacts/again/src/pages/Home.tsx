@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { SiX } from "react-icons/si";
 
 import imgCJFace    from "@assets/file_00000000ae3071f4996686dabbcc28d6_1782525794223.png";
@@ -6,7 +6,8 @@ import imgCJMissile from "@assets/file_00000000c95471f4a81c4fc202c0ef0d_17825257
 import imgCJStreet  from "@assets/e3ff96bf9d25d9f6ce728bb8c982186a_1782525764183.jpg";
 import imgCJBed     from "@assets/cfb96f4ef5ed21e5f5f2a141ca49fd9a_1782525764435.jpg";
 import imgCJCinema  from "@assets/700dcb0e29ca55dbe9ab6cdff4e04727_1782525764494.jpg";
-import imgCJBreaking from "@assets/1782523850458_1782525794092.png";
+import imgBreaking  from "@assets/1782523850458_1782530080986.png";
+import imgCNNLive   from "@assets/robinson-432x243_1782530080724.jpeg";
 
 const CA       = "DR4nHueGFV6M9D3sEACyWwvt4ihhGKfQG3tyYKfXpump";
 const BUY_URL  = "https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=DR4nHueGFV6M9D3sEACyWwvt4ihhGKfQG3tyYKfXpump";
@@ -14,172 +15,130 @@ const DEX_URL  = "https://dexscreener.com/solana/DR4nHueGFV6M9D3sEACyWwvt4ihhGKf
 const PUMP_URL = "https://pump.fun/coin/DR4nHueGFV6M9D3sEACyWwvt4ihhGKfQG3tyYKfXpump";
 const X_URL    = "https://x.com/i/communities/2038639985490887031";
 
-/* ── SVG assets ──────────────────────────────────────── */
+/* ── SVG primitives ──────────────────────── */
+
 const PalmLeft = () => (
-  <svg width="220" height="380" viewBox="0 0 220 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="95" y="200" width="18" height="180" rx="4" fill="#0d0515" transform="rotate(-8 95 200)"/>
-    <rect x="100" y="160" width="14" height="120" rx="3" fill="#0d0515" transform="rotate(-15 100 160)"/>
-    <ellipse cx="70" cy="200" rx="80" ry="22" fill="#0d0515" transform="rotate(-35 70 200)"/>
-    <ellipse cx="105" cy="175" rx="75" ry="20" fill="#0d0515" transform="rotate(-55 105 175)"/>
-    <ellipse cx="95" cy="165" rx="70" ry="18" fill="#0d0515" transform="rotate(15 95 165)"/>
-    <ellipse cx="115" cy="155" rx="72" ry="19" fill="#0d0515" transform="rotate(-70 115 155)"/>
-    <ellipse cx="90" cy="145" rx="65" ry="17" fill="#0d0515" transform="rotate(30 90 145)"/>
-    <ellipse cx="110" cy="135" rx="68" ry="18" fill="#0d0515" transform="rotate(-85 110 135)"/>
-    <path d="M50 380 Q110 360 170 380 Q140 340 100 330 Q60 340 50 380Z" fill="#0d0515"/>
+  <svg width="200" height="360" viewBox="0 0 200 360" fill="none">
+    <rect x="88" y="190" width="17" height="170" rx="4" fill="#070412" transform="rotate(-8 88 190)"/>
+    <rect x="93" y="150" width="13" height="115" rx="3" fill="#070412" transform="rotate(-15 93 150)"/>
+    <ellipse cx="62" cy="190" rx="76" ry="21" fill="#070412" transform="rotate(-35 62 190)"/>
+    <ellipse cx="97" cy="165" rx="72" ry="19" fill="#070412" transform="rotate(-55 97 165)"/>
+    <ellipse cx="88" cy="155" rx="66" ry="17" fill="#070412" transform="rotate(15 88 155)"/>
+    <ellipse cx="108" cy="144" rx="68" ry="18" fill="#070412" transform="rotate(-70 108 144)"/>
+    <ellipse cx="83" cy="134" rx="62" ry="16" fill="#070412" transform="rotate(30 83 134)"/>
+    <path d="M44 360 Q100 342 158 360 Q130 322 94 313 Q58 322 44 360Z" fill="#070412"/>
   </svg>
 );
 
 const PalmRight = () => (
-  <svg width="220" height="380" viewBox="0 0 220 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="107" y="200" width="18" height="180" rx="4" fill="#0d0515" transform="rotate(8 107 200)"/>
-    <rect x="106" y="160" width="14" height="120" rx="3" fill="#0d0515" transform="rotate(15 106 160)"/>
-    <ellipse cx="150" cy="200" rx="80" ry="22" fill="#0d0515" transform="rotate(35 150 200)"/>
-    <ellipse cx="115" cy="175" rx="75" ry="20" fill="#0d0515" transform="rotate(55 115 175)"/>
-    <ellipse cx="125" cy="165" rx="70" ry="18" fill="#0d0515" transform="rotate(-15 125 165)"/>
-    <ellipse cx="105" cy="155" rx="72" ry="19" fill="#0d0515" transform="rotate(70 105 155)"/>
-    <ellipse cx="130" cy="145" rx="65" ry="17" fill="#0d0515" transform="rotate(-30 130 145)"/>
-    <ellipse cx="110" cy="135" rx="68" ry="18" fill="#0d0515" transform="rotate(85 110 135)"/>
-    <path d="M50 380 Q110 360 170 380 Q140 340 100 330 Q60 340 50 380Z" fill="#0d0515"/>
+  <svg width="200" height="360" viewBox="0 0 200 360" fill="none">
+    <rect x="95" y="190" width="17" height="170" rx="4" fill="#070412" transform="rotate(8 95 190)"/>
+    <rect x="94" y="150" width="13" height="115" rx="3" fill="#070412" transform="rotate(15 94 150)"/>
+    <ellipse cx="138" cy="190" rx="76" ry="21" fill="#070412" transform="rotate(35 138 190)"/>
+    <ellipse cx="103" cy="165" rx="72" ry="19" fill="#070412" transform="rotate(55 103 165)"/>
+    <ellipse cx="112" cy="155" rx="66" ry="17" fill="#070412" transform="rotate(-15 112 155)"/>
+    <ellipse cx="92" cy="144" rx="68" ry="18" fill="#070412" transform="rotate(70 92 144)"/>
+    <ellipse cx="117" cy="134" rx="62" ry="16" fill="#070412" transform="rotate(-30 117 134)"/>
+    <path d="M44 360 Q100 342 158 360 Q130 322 94 313 Q58 322 44 360Z" fill="#070412"/>
   </svg>
 );
 
 const WomanSilhouette = () => (
-  <svg width="180" height="320" viewBox="0 0 180 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="90" cy="38" r="28" fill="#0d0515"/>
-    <path d="M70 38 Q68 18 90 20 Q112 18 110 38 Q116 28 108 22 Q98 12 90 14 Q82 12 72 22 Q64 28 70 38Z" fill="#160824"/>
-    <path d="M62 62 Q55 68 50 90 Q45 112 50 140 Q55 160 60 175 L78 175 L88 100 L92 100 L102 175 L120 175 Q125 160 130 140 Q135 112 130 90 Q125 68 118 62 Q108 58 90 58 Q72 58 62 62Z" fill="#0d0515"/>
-    <path d="M62 68 L48 80 L30 160 L50 165 L62 110 Z" fill="#0d0515"/>
-    <path d="M118 68 L132 80 L150 160 L130 165 L118 110 Z" fill="#0d0515"/>
-    <path d="M30 158 L28 175 Q30 182 38 185 Q44 183 46 178 L50 165 Z" fill="#0d0515"/>
-    <path d="M150 158 L152 175 Q150 182 142 185 Q136 183 134 178 L130 165 Z" fill="#0d0515"/>
-    <path d="M60 170 L50 320 L72 320 Q78 280 88 250 Q92 240 92 250 Q98 280 108 320 L130 320 L120 170 Z" fill="#0d0515"/>
-    <ellipse cx="61" cy="319" rx="16" ry="5" fill="#160824"/>
-    <ellipse cx="119" cy="319" rx="16" ry="5" fill="#160824"/>
+  <svg width="160" height="300" viewBox="0 0 160 300" fill="none">
+    <circle cx="80" cy="34" r="26" fill="#070412"/>
+    <path d="M54 56 Q48 62 44 84 Q40 106 44 132 Q48 152 53 166 L70 166 L79 92 L81 92 L90 166 L107 166 Q112 152 116 132 Q120 106 116 84 Q112 62 106 56 Q96 52 80 52 Q64 52 54 56Z" fill="#070412"/>
+    <path d="M54 62 L41 73 L24 150 L43 155 L54 102Z" fill="#070412"/>
+    <path d="M106 62 L119 73 L136 150 L117 155 L106 102Z" fill="#070412"/>
+    <path d="M52 160 L44 300 L65 300 Q70 262 79 234 Q82 224 82 234 Q87 262 95 300 L116 300 L108 160Z" fill="#070412"/>
   </svg>
 );
 
 const CityBuildings = () => (
-  <svg width="100%" height="140" viewBox="0 0 1200 140" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0"   y="60"  width="60"  height="80" fill="#080410"/>
-    <rect x="8"   y="72"  width="44"  height="48" fill="#0d0515" opacity="0.5"/>
-    <rect x="55"  y="20"  width="80"  height="120" fill="#0a0312"/>
-    <rect x="63"  y="30"  width="64"  height="50"  fill="#0d0515" opacity="0.4"/>
-    <rect x="130" y="50"  width="50"  height="90"  fill="#08040f"/>
-    <rect x="175" y="5"   width="100" height="135" fill="#0d0515"/>
-    <rect x="183" y="15"  width="84"  height="60"  fill="#12071e" opacity="0.5"/>
-    <rect x="270" y="40"  width="70"  height="100" fill="#080410"/>
-    <rect x="335" y="25"  width="90"  height="115" fill="#0a0312"/>
-    <rect x="420" y="0"   width="120" height="140" fill="#0d0515"/>
-    <rect x="428" y="10"  width="104" height="70"  fill="#12071e" opacity="0.5"/>
-    <rect x="540" y="30"  width="60"  height="110" fill="#08040f"/>
-    <rect x="595" y="10"  width="85"  height="130" fill="#0a0312"/>
-    <rect x="675" y="45"  width="55"  height="95"  fill="#0d0515"/>
-    <rect x="725" y="15"  width="95"  height="125" fill="#080410"/>
-    <rect x="733" y="25"  width="79"  height="60"  fill="#0d0515" opacity="0.4"/>
-    <rect x="815" y="35"  width="70"  height="105" fill="#0a0312"/>
-    <rect x="880" y="0"   width="110" height="140" fill="#0d0515"/>
-    <rect x="888" y="10"  width="94"  height="75"  fill="#12071e" opacity="0.5"/>
-    <rect x="985" y="25"  width="75"  height="115" fill="#08040f"/>
-    <rect x="1055" y="55" width="50"  height="85"  fill="#0a0312"/>
-    <rect x="1100" y="30" width="100" height="110" fill="#0d0515"/>
+  <svg width="100%" height="130" viewBox="0 0 1200 130" preserveAspectRatio="xMidYMax slice" fill="none">
+    <rect x="0"   y="55"  width="58"  height="75"  fill="#060310"/>
+    <rect x="52"  y="18"  width="76"  height="112" fill="#080418"/>
+    <rect x="124" y="46"  width="48"  height="84"  fill="#060310"/>
+    <rect x="168" y="3"   width="96"  height="127" fill="#090520"/>
+    <rect x="260" y="38"  width="66"  height="92"  fill="#070414"/>
+    <rect x="322" y="22"  width="86"  height="108" fill="#080418"/>
+    <rect x="404" y="0"   width="114" height="130" fill="#090520"/>
+    <rect x="515" y="28"  width="57"  height="102" fill="#060310"/>
+    <rect x="568" y="8"   width="80"  height="122" fill="#080418"/>
+    <rect x="645" y="42"  width="53"  height="88"  fill="#090520"/>
+    <rect x="694" y="12"  width="90"  height="118" fill="#060310"/>
+    <rect x="781" y="32"  width="67"  height="98"  fill="#080418"/>
+    <rect x="845" y="0"   width="105" height="130" fill="#090520"/>
+    <rect x="947" y="22"  width="72"  height="108" fill="#060310"/>
+    <rect x="1016" y="50" width="48"  height="80"  fill="#080418"/>
+    <rect x="1061" y="28" width="95"  height="102" fill="#090520"/>
   </svg>
 );
 
 const MissileSVG = ({ size = 1 }: { size?: number }) => (
-  <svg width={Math.round(80*size)} height={Math.round(20*size)} viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M70 10 L80 6 L80 14 Z" fill="#cc3300"/>
-    <rect x="20" y="7" width="52" height="6" rx="1" fill="#b0b8cc"/>
-    <rect x="22" y="7" width="50" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
-    <path d="M20 10 L0 5 L0 15 Z" fill="#8899aa"/>
-    <path d="M28 7 L28 13 L34 15 L34 5 Z" fill="#99aacc"/>
-    <path d="M28 13 L36 18 L36 13 Z" fill="#7788aa" opacity="0.7"/>
-    <path d="M28 7 L36 2 L36 7 Z" fill="#7788aa" opacity="0.7"/>
-    <ellipse cx="8" cy="10" rx="6" ry="5" fill="rgba(255,140,0,0.9)"/>
-    <ellipse cx="5" cy="10" rx="8" ry="4" fill="rgba(255,200,0,0.6)"/>
-    <ellipse cx="2" cy="10" rx="10" ry="3" fill="rgba(255,100,0,0.3)"/>
+  <svg width={Math.round(78*size)} height={Math.round(20*size)} viewBox="0 0 78 20" fill="none">
+    <path d="M68 10 L78 5 L78 15Z" fill="#c62828"/>
+    <rect x="18" y="7" width="52" height="6" rx="1" fill="#94a3b8"/>
+    <rect x="20" y="7" width="50" height="3" rx="1" fill="rgba(255,255,255,0.18)"/>
+    <path d="M18 10 L0 5 L0 15Z" fill="#64748b"/>
+    <path d="M26 7 L26 13 L32 15 L32 5Z" fill="#7a8fa8"/>
+    <ellipse cx="7"  cy="10" rx="6" ry="4.5" fill="rgba(255,120,0,0.9)"/>
+    <ellipse cx="4"  cy="10" rx="8" ry="3.5" fill="rgba(255,180,0,0.55)"/>
+    <ellipse cx="1"  cy="10" rx="9" ry="2.5" fill="rgba(255,80,0,0.25)"/>
   </svg>
 );
 
-const ShipSVG = () => (
-  <svg width="90" height="55" viewBox="0 0 90 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5 40 Q45 25 85 40 L78 52 Q45 48 12 52 Z" fill="#3a4a5a"/>
-    <path d="M5 40 Q45 30 85 40" stroke="#4a5a6a" strokeWidth="1" fill="none"/>
-    <rect x="30" y="25" width="28" height="16" rx="1" fill="#2a3a4a"/>
-    <rect x="35" y="18" width="18" height="8" rx="1" fill="#1a2a3a"/>
-    <rect x="42" y="10" width="4" height="10" fill="#1a2a3a"/>
-    <rect x="38" y="26" width="6" height="4" fill="#4a5a6a"/>
-    <rect x="47" y="26" width="6" height="4" fill="#4a5a6a"/>
-    <path d="M5 40 L12 52" stroke="#2a3a4a" strokeWidth="1"/>
-    <path d="M85 40 L78 52" stroke="#2a3a4a" strokeWidth="1"/>
-    <path d="M2 45 Q45 55 88 45" stroke="#1a4a7a" strokeWidth="2" fill="none" opacity="0.4"/>
-  </svg>
-);
-
-const StarSVG = ({ color = "#f5c400" }: { color?: string }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill={color} stroke="rgba(0,0,0,0.5)" strokeWidth="1"/>
+const StarSVG = ({ color = "#ff6b00" }: { color?: string }) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill={color} stroke="rgba(0,0,0,0.4)" strokeWidth="1"/>
   </svg>
 );
 
 const RadarSVG = () => (
-  <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="40" cy="40" r="38" stroke="rgba(57,255,20,0.2)" strokeWidth="1" fill="rgba(0,20,0,0.3)"/>
-    <circle cx="40" cy="40" r="28" stroke="rgba(57,255,20,0.15)" strokeWidth="0.5" fill="none"/>
-    <circle cx="40" cy="40" r="18" stroke="rgba(57,255,20,0.12)" strokeWidth="0.5" fill="none"/>
-    <circle cx="40" cy="40" r="8" stroke="rgba(57,255,20,0.2)" strokeWidth="0.5" fill="none"/>
-    <line x1="40" y1="2" x2="40" y2="78" stroke="rgba(57,255,20,0.08)" strokeWidth="0.5"/>
-    <line x1="2" y1="40" x2="78" y2="40" stroke="rgba(57,255,20,0.08)" strokeWidth="0.5"/>
+  <svg width="72" height="72" viewBox="0 0 80 80" fill="none">
+    <circle cx="40" cy="40" r="37" stroke="rgba(255,107,0,0.18)" strokeWidth="1" fill="rgba(0,8,20,0.4)"/>
+    <circle cx="40" cy="40" r="26" stroke="rgba(255,107,0,0.12)" strokeWidth="0.5" fill="none"/>
+    <circle cx="40" cy="40" r="15" stroke="rgba(255,107,0,0.1)" strokeWidth="0.5" fill="none"/>
+    <line x1="40" y1="3" x2="40" y2="77" stroke="rgba(255,107,0,0.07)" strokeWidth="0.5"/>
+    <line x1="3" y1="40" x2="77" y2="40" stroke="rgba(255,107,0,0.07)" strokeWidth="0.5"/>
     <g className="radar-sweep">
-      <path d="M40 40 L40 2 A38 38 0 0 1 78 40 Z" fill="url(#radarGrad)" opacity="0.6"/>
+      <path d="M40 40 L40 3 A37 37 0 0 1 77 40Z" fill="url(#rg)" opacity="0.55"/>
       <defs>
-        <radialGradient id="radarGrad" cx="0%" cy="100%" r="100%">
-          <stop offset="0%" stopColor="rgba(57,255,20,0)" stopOpacity="0"/>
-          <stop offset="70%" stopColor="rgba(57,255,20,0.15)" stopOpacity="1"/>
-          <stop offset="100%" stopColor="rgba(57,255,20,0.5)" stopOpacity="1"/>
+        <radialGradient id="rg" cx="0%" cy="100%" r="100%">
+          <stop offset="0%" stopColor="rgba(255,107,0,0)" stopOpacity="0"/>
+          <stop offset="75%" stopColor="rgba(255,107,0,0.12)" stopOpacity="1"/>
+          <stop offset="100%" stopColor="rgba(255,107,0,0.45)" stopOpacity="1"/>
         </radialGradient>
       </defs>
     </g>
-    <circle className="blip" cx="55" cy="28" r="2.5" fill="#39ff14" style={{ filter: "drop-shadow(0 0 3px #39ff14)" }}/>
-    <circle className="blip" cx="25" cy="52" r="2" fill="#39ff14" style={{ animationDelay: "1s", filter: "drop-shadow(0 0 3px #39ff14)" }}/>
-    <circle cx="40" cy="40" r="2" fill="rgba(57,255,20,0.8)"/>
-    <circle className="radar-ping-ring" cx="40" cy="40" r="8" stroke="rgba(57,255,20,0.5)" strokeWidth="1" fill="none" style={{ transformOrigin: "40px 40px" }}/>
-    <circle className="radar-ping-ring" cx="40" cy="40" r="8" stroke="rgba(57,255,20,0.3)" strokeWidth="0.5" fill="none" style={{ transformOrigin: "40px 40px" }}/>
+    <circle className="blip" cx="54" cy="26" r="2.5" fill="#ff6b00" style={{ filter: "drop-shadow(0 0 3px #ff6b00)" }}/>
+    <circle className="blip" cx="24" cy="50" r="2" fill="#e91e8c" style={{ animationDelay: "1s", filter: "drop-shadow(0 0 3px #e91e8c)" }}/>
+    <circle cx="40" cy="40" r="2" fill="rgba(255,107,0,0.7)"/>
+    <circle className="radar-ping-ring" cx="40" cy="40" r="7" stroke="rgba(255,107,0,0.45)" strokeWidth="1" fill="none" style={{ transformOrigin: "40px 40px" }}/>
+    <circle className="radar-ping-ring" cx="40" cy="40" r="7" stroke="rgba(255,107,0,0.25)" strokeWidth="0.5" fill="none" style={{ transformOrigin: "40px 40px" }}/>
   </svg>
 );
 
-const SignalBars = () => (
-  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0"  y="11" width="3" height="5" rx="0.5" fill="#39ff14" opacity="0.9"/>
-    <rect x="5"  y="8"  width="3" height="8" rx="0.5" fill="#39ff14" opacity="0.8"/>
-    <rect x="10" y="4"  width="3" height="12" rx="0.5" fill="#39ff14" opacity="0.7"/>
-    <rect x="15" y="0"  width="3" height="16" rx="0.5" fill="#39ff14" opacity="0.3"/>
-  </svg>
-);
+/* ── Component ──────────────────────────── */
 
-/* ── Main Component ──────────────────────────────────── */
 export default function Home() {
-  const [utcTime, setUtcTime] = useState("");
-  const [showMP, setShowMP] = useState(false);
-  const [copyLabel, setCopyLabel] = useState("Copy Contract");
+  const [utcTime, setUtcTime]     = useState("");
+  const [showMP, setShowMP]       = useState(false);
+  const [copyLabel, setCopyLabel] = useState("Copy CA");
   const [loaderGone, setLoaderGone] = useState(false);
   const [visibleTl, setVisibleTl] = useState<Set<number>>(new Set());
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
 
-  // UTC clock
   useEffect(() => {
-    const update = () => setUtcTime(new Date().toISOString().replace("T", " ").substring(0, 19) + " UTC");
-    update();
-    const id = setInterval(update, 1000);
+    const tick = () => setUtcTime(new Date().toISOString().replace("T"," ").slice(0,19) + " UTC");
+    tick();
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
 
-  // Loading screen removal
   useEffect(() => {
     const id = setTimeout(() => setLoaderGone(true), 4700);
     return () => clearTimeout(id);
   }, []);
 
-  // Timeline IntersectionObserver
   useEffect(() => {
     if (!loaderGone) return;
     const obs = new IntersectionObserver(
@@ -192,143 +151,108 @@ export default function Home() {
     return () => obs.disconnect();
   }, [loaderGone]);
 
-  // Section reveal observer
-  useEffect(() => {
-    if (!loaderGone) return;
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach(e => {
-        if (e.isIntersecting) {
-          const id = e.target.getAttribute("data-section");
-          if (id) setVisibleSections(p => new Set(p).add(id));
-        }
-      }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll("[data-section]").forEach(el => obs.observe(el));
-    return () => obs.disconnect();
-  }, [loaderGone]);
-
-  // 3D tilt cards
+  // 3D card tilt
   useEffect(() => {
     const cards = document.querySelectorAll<HTMLElement>(".tilt-card");
     const handlers: Array<[HTMLElement, EventListener, EventListener]> = [];
     cards.forEach(card => {
       const onMove = (e: Event) => {
         const me = e as MouseEvent;
-        const rect = card.getBoundingClientRect();
-        const x = ((me.clientX - rect.left) / rect.width  - 0.5) * 16;
-        const y = ((me.clientY - rect.top)  / rect.height - 0.5) * -16;
-        card.style.transform = `perspective(600px) rotateY(${x}deg) rotateX(${y}deg) translateZ(8px)`;
+        const r = card.getBoundingClientRect();
+        const x = ((me.clientX - r.left) / r.width  - 0.5) * 14;
+        const y = ((me.clientY - r.top)  / r.height - 0.5) * -14;
+        card.style.transform = `perspective(500px) rotateY(${x}deg) rotateX(${y}deg) translateZ(6px)`;
       };
       const onLeave = () => { card.style.transform = ""; };
       card.addEventListener("mousemove", onMove);
       card.addEventListener("mouseleave", onLeave);
       handlers.push([card, onMove as EventListener, onLeave as EventListener]);
     });
-    return () => handlers.forEach(([card, m, l]) => { card.removeEventListener("mousemove", m); card.removeEventListener("mouseleave", l); });
+    return () => handlers.forEach(([c, m, l]) => { c.removeEventListener("mousemove", m); c.removeEventListener("mouseleave", l); });
   }, [loaderGone]);
 
   const copyCA = useCallback(() => {
     navigator.clipboard.writeText(CA).catch(() => {});
     setShowMP(true);
     setCopyLabel("Copied!");
-    setTimeout(() => { setShowMP(false); setCopyLabel("Copy Contract"); }, 3000);
+    setTimeout(() => { setShowMP(false); setCopyLabel("Copy CA"); }, 3000);
   }, []);
 
-  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-
-  const TICKER_TEXT = [
-    "BREAKING — Another ceasefire announced",
-    "UPDATE — New reports from the Strait of Hormuz",
-    "LIVE — Markets react",
-    "BREAKING — Here we go again",
-    "SOLANA — $AGAIN now live on-chain",
-    `CONTRACT: ${CA}`,
-    "DEVELOPING — Situation unclear",
+  const TICKER = [
+    "CEASEFIRE VIOLATED — DAY 3",
+    "MARKETS RESPOND",
+    "ANOTHER EMERGENCY CALL",
     "AH SHIT. HERE WE GO AGAIN.",
-    "BREAKING — Ceasefire lasted five minutes",
+    `$AGAIN — CA: ${CA}`,
+    "WORLD LEADERS ON HOLD",
+    "REPORTS EMERGING FROM THE STRAIT",
+    "BUY $AGAIN ON SOLANA",
+    "HERE WE GO AGAIN.",
   ].join("   //   ");
 
   const TL = [
-    { time: "09:14", label: "BREAKING", text: "Ceasefire announced." },
-    { time: "09:36", label: "UPDATE",   text: "Another incident reported." },
-    { time: "09:42", label: "MARKETS",  text: "Markets react." },
-    { time: "09:45", label: "LIVE",     text: "$AGAIN launches on Solana." },
-    { time: "09:47", label: "DEV",      text: "You're reading this." },
+    { time: "09:14", badge: "BREAKING", text: "Ceasefire announced. World leaders exhale." },
+    { time: "09:36", badge: "UPDATE",   text: "Reports of fresh clashes emerging." },
+    { time: "09:42", badge: "MARKETS",  text: "S&P drops. Oil surges. Twitter explodes." },
+    { time: "09:45", badge: "LIVE",     text: "$AGAIN goes live on Solana." },
+    { time: "09:47", badge: "NOW",      text: "You're reading this." },
   ];
 
-  const ARCHIVE = [
-    { img: imgCJFace,     cap: "CJ had a point.",          cam: "CAM 01", tag: "ARCHIVE" },
-    { img: imgCJMissile,  cap: "Perfect timing.",           cam: "FEED A", tag: "LIVE"    },
-    { img: imgCJStreet,   cap: "Market mood.",              cam: "CAM 02", tag: "UPDATE"  },
-    { img: imgCJBed,      cap: "Breaking again.",           cam: "FEED B", tag: "BREAKING"},
-    { img: imgCJCinema,   cap: "Another notification.",     cam: "CAM 03", tag: "WORLD"   },
-    { img: imgCJBreaking, cap: "Nothing ever changes.",     cam: "FEED C", tag: "DEV"     },
-  ];
-
-  const tagClass: Record<string,string> = {
-    ARCHIVE:"badge-world", LIVE:"badge-live", UPDATE:"badge-update",
-    BREAKING:"badge-breaking", WORLD:"badge-world", DEV:"badge-dev", MARKETS:"badge-update",
+  const badgeClass: Record<string, string> = {
+    BREAKING: "badge-breaking", UPDATE: "badge-update", MARKETS: "badge-world",
+    LIVE: "badge-live", NOW: "badge-live", ARCHIVE: "badge-world", DEV: "badge-update",
   };
 
-  return (
-    <div style={{ background: "#0d0712", color: "#fff5e4", minHeight: "100vh", overflowX: "hidden", position: "relative" }}>
+  const ARCHIVE = [
+    { img: imgCJFace,    cap: "CJ had a point.",      tag: "ARCHIVE" },
+    { img: imgCJMissile, cap: "Perfect timing.",       tag: "LIVE"    },
+    { img: imgCJStreet,  cap: "Market mood.",          tag: "ARCHIVE" },
+    { img: imgCJBed,     cap: "Every morning.",        tag: "ARCHIVE" },
+    { img: imgCJCinema,  cap: "Another notification.", tag: "UPDATE"  },
+  ];
 
-      {/* ══════════════════════════════
-          GTA LOADING SCREEN
-      ══════════════════════════════ */}
+  const BG_NAV = "rgba(8,13,24,0.97)";
+  const BG_SECTION_A = "linear-gradient(160deg, #0c1428 0%, #0a1120 50%, #101830 100%)";
+  const BG_SECTION_B = "linear-gradient(160deg, #0a1020 0%, #0c1528 50%, #0a1020 100%)";
+
+  return (
+    <div style={{ background: "#080d18", color: "#f0ead8", minHeight: "100vh", overflowX: "hidden" }}>
+
+      {/* ── GTA Loading Screen ─────────────── */}
       {!loaderGone && (
         <div id="gta-loader">
           <div className="loader-gradient-layer"/>
           <div className="loader-stars"/>
           <div className="loader-sun"/>
           <div className="loader-horizon"/>
-
-          {/* City buildings silhouette */}
-          <div className="loader-city-buildings">
-            <CityBuildings/>
-          </div>
-
-          {/* Palm trees */}
-          <div className="loader-palm-left" style={{ bottom: 0 }}>
-            <PalmLeft/>
-          </div>
-          <div className="loader-palm-right" style={{ bottom: 0 }}>
-            <PalmRight/>
-          </div>
-
-          {/* Woman silhouette */}
-          <div className="loader-silhouette">
-            <WomanSilhouette/>
-          </div>
-
-          <div className="loader-title-wrap">
-            <div className="loader-title">$AGAIN</div>
+          <div className="loader-city-buildings"><CityBuildings/></div>
+          <div className="loader-palm-left"><PalmLeft/></div>
+          <div className="loader-palm-right"><PalmRight/></div>
+          <div className="loader-silhouette"><WomanSilhouette/></div>
+          <div className="loader-logo-wrap">
+            <div className="loader-logo">$AGAIN</div>
             <div className="loader-subtitle">Here We Go Again &nbsp;·&nbsp; Solana</div>
           </div>
-
-          <div className="loader-bar-wrap" style={{ margin: "0 auto 0" }}>
+          <div className="loader-bar-wrap" style={{ margin: "0 auto" }}>
             <div className="loader-bar"/>
           </div>
-          <div className="loader-tip">Loading situation&hellip; please wait</div>
+          <div className="loader-tip">Loading situation&hellip;</div>
         </div>
       )}
 
-      {/* Global overlays */}
+      {/* ── Global overlays ────────────────── */}
       <div className="scanlines-fixed"/>
       <div className="static-flash"/>
 
-      {/* ══════════════════════════════
-          MISSION PASSED OVERLAY
-      ══════════════════════════════ */}
+      {/* ── Mission Passed ─────────────────── */}
       {showMP && (
         <div className="mp-overlay">
           <div className="mp-box">
             <div className="mp-shake">
-              <span className="mp-star s1"><StarSVG color="#f5c400"/></span>
-              <span className="mp-star s2"><StarSVG color="#f5c400"/></span>
-              <span className="mp-star s3"><StarSVG color="#f5c400"/></span>
-              <span className="mp-star s4"><StarSVG color="#f5c400"/></span>
+              <span className="mp-star s1"><StarSVG/></span>
+              <span className="mp-star s2"><StarSVG/></span>
+              <span className="mp-star s3"><StarSVG color="#e91e8c"/></span>
+              <span className="mp-star s4"><StarSVG color="#e91e8c"/></span>
               <span className="mp-text-main">mission passed<span className="mp-exclaim">!</span></span>
               <span className="mp-respect">Respect +</span>
               <span className="mp-cash">CONTRACT ADDRESS COPIED</span>
@@ -337,408 +261,452 @@ export default function Home() {
         </div>
       )}
 
-      {/* ══════════════════════════════
-          NAV
-      ══════════════════════════════ */}
+      {/* ── NAV ────────────────────────────── */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 500,
-        height: "56px",
-        background: "linear-gradient(180deg, rgba(13,7,18,0.98) 0%, rgba(20,10,30,0.96) 100%)",
-        borderBottom: "2px solid #cc0000",
+        height: "52px",
+        background: BG_NAV,
+        borderBottom: "2px solid #c62828",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "0 20px",
-        boxShadow: "0 2px 30px rgba(107,0,204,0.2), 0 0 0 0 transparent",
+        boxShadow: "0 1px 24px rgba(0,0,0,0.6)",
       }}>
-        {/* Left */}
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-          <span style={{
-            fontFamily: "'Righteous', sans-serif",
-            fontSize: "1.9rem",
-            color: "#f5c400",
-            letterSpacing: "0.04em",
+        {/* Logo — white on black */}
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{
+            background: "#000", color: "#fff",
+            fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+            fontSize: "1.6rem",
+            padding: "2px 14px 4px",
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
             lineHeight: 1,
-            WebkitTextStroke: "2px rgba(0,0,0,0.4)",
-            textShadow: "0 0 24px rgba(245,196,0,0.5), 3px 3px 0 rgba(0,0,0,0.4)",
-          }}>$AGAIN</span>
+            userSelect: "none",
+          }}>$AGAIN</div>
           <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
             <span className="live-dot"/>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700 }}>LIVE</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.56rem", color: "#dc2626", letterSpacing: "0.22em", fontWeight: 700 }}>LIVE</span>
           </div>
         </div>
 
-        {/* Right */}
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <a href={BUY_URL} target="_blank" className="btn-gta btn-gold" style={{ fontSize: "0.85rem", padding: "7px 20px" }}>Buy</a>
-          <button onClick={() => scrollTo("chart")} className="btn-gta btn-red" style={{ fontSize: "0.85rem", padding: "7px 20px" }}>Chart</button>
-          <a href="#archive" className="btn-gta btn-purple" style={{ fontSize: "0.85rem", padding: "7px 20px" }}>Archive</a>
-          <a href={X_URL} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "0.85rem", padding: "7px 18px", gap: "5px" }}>
-            <SiX size={11}/> Community
+          <a href={BUY_URL} target="_blank" className="btn-gta btn-orange" style={{ padding: "7px 18px", fontSize: "0.8rem" }}>Buy</a>
+          <a href="#chart" className="btn-gta btn-red" style={{ padding: "7px 18px", fontSize: "0.8rem" }}>Chart</a>
+          <a href="#archive" className="btn-gta btn-dark" style={{ padding: "7px 18px", fontSize: "0.8rem" }}>Archive</a>
+          <a href={X_URL} target="_blank" className="btn-gta btn-pink" style={{ padding: "7px 16px", fontSize: "0.8rem", gap: "5px" }}>
+            <SiX size={11}/> X
           </a>
-          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginLeft: "8px", paddingLeft: "10px", borderLeft: "1px solid rgba(107,0,204,0.25)" }}>
-            <span className="live-dot"/>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.56rem", color: "rgba(255,245,228,0.3)", letterSpacing: "0.12em" }}>SOL</span>
-          </div>
         </div>
       </nav>
 
-      {/* ══════════════════════════════
-          BREAKING NEWS TICKER
-      ══════════════════════════════ */}
+      {/* ── Ticker ─────────────────────────── */}
       <div style={{
-        position: "fixed", top: "56px", left: 0, right: 0, zIndex: 490,
-        height: "30px",
-        background: "linear-gradient(90deg, #8b0000 0%, #cc0000 100%)",
-        borderBottom: "2px solid #f5c400",
+        position: "fixed", top: "52px", left: 0, right: 0, zIndex: 490,
+        height: "28px", overflow: "hidden",
+        background: "linear-gradient(90deg, #7f0000 0%, #c62828 100%)",
+        borderBottom: "1.5px solid rgba(255,107,0,0.5)",
         display: "flex", alignItems: "center",
-        overflow: "hidden",
       }}>
         <div style={{
-          background: "#f5c400", color: "#1a0d1f",
-          fontFamily: "'Righteous', sans-serif",
-          fontSize: "0.85rem",
-          padding: "0 16px",
+          background: "#ff6b00", color: "white",
+          fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+          fontSize: "0.78rem", padding: "0 14px",
           height: "100%", display: "flex", alignItems: "center",
-          flexShrink: 0,
-          letterSpacing: "0.06em",
-          WebkitTextStroke: "0.5px rgba(0,0,0,0.2)",
-          zIndex: 2,
+          flexShrink: 0, letterSpacing: "0.06em",
         }}>BREAKING</div>
         <div style={{ flex: 1, overflow: "hidden" }}>
           <div className="ticker-inner" style={{
-            fontFamily: "'Oswald', sans-serif",
-            fontWeight: 400,
-            fontSize: "0.8rem",
-            color: "white",
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-            padding: "0 20px",
+            fontFamily: "'Inter', 'Helvetica Neue', sans-serif",
+            fontWeight: 500, fontSize: "0.72rem",
+            color: "rgba(255,255,255,0.92)", letterSpacing: "0.07em",
+            textTransform: "uppercase", padding: "0 18px",
           }}>
-            {[TICKER_TEXT, TICKER_TEXT].map((t, i) => (
-              <span key={i} style={{ marginRight: "60px" }}>{t}</span>
-            ))}
+            {[TICKER, TICKER].map((t, i) => <span key={i} style={{ marginRight: "60px" }}>{t}</span>)}
           </div>
         </div>
       </div>
 
-      {/* ══════════════════════════════
+      {/* ══════════════════════════════════════
           HERO
-      ══════════════════════════════ */}
+      ══════════════════════════════════════ */}
       <section style={{
         position: "relative",
         minHeight: "100vh",
-        paddingTop: "110px",
-        paddingBottom: "80px",
+        paddingTop: "104px",
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        alignItems: "center",
         overflow: "hidden",
-        background: "radial-gradient(ellipse at 25% 60%, rgba(107,0,204,0.18) 0%, transparent 55%), radial-gradient(ellipse at 75% 30%, rgba(204,0,0,0.08) 0%, transparent 45%), #0d0712",
+        background: "radial-gradient(ellipse at 20% 55%, rgba(255,107,0,0.07) 0%, transparent 50%), radial-gradient(ellipse at 80% 30%, rgba(233,30,140,0.05) 0%, transparent 45%), #080d18",
       }}>
-        <div className="tac-grid bg-heat" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}/>
+        <div className="tac-grid" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}/>
 
-        {/* Animated missiles (SVG) */}
-        <div className="missile-wrap ms1" style={{ position: "absolute", zIndex: 12 }}>
-          <div className="missile-body">
-            <div className="missile-trail-seg" style={{ width: "60px", height: "2px", background: "linear-gradient(to left, rgba(255,140,0,0.8), transparent)", position: "absolute", right: "100%", top: "50%", transform: "translateY(-50%)" }}/>
-            <div className="missile-trail-seg" style={{ width: "40px", height: "1px", background: "linear-gradient(to left, rgba(255,200,0,0.5), transparent)", position: "absolute", right: "calc(100% + 50px)", top: "50%", transform: "translateY(-50%)" }}/>
-            <MissileSVG size={1.2}/>
-          </div>
-        </div>
-        <div className="missile-wrap ms2" style={{ position: "absolute", zIndex: 12 }}>
-          <div className="missile-body">
-            <div className="missile-trail-seg" style={{ width: "50px", height: "2px", background: "linear-gradient(to left, rgba(255,140,0,0.8), transparent)", position: "absolute", right: "100%", top: "50%", transform: "translateY(-50%)" }}/>
-            <MissileSVG size={0.9}/>
-          </div>
-        </div>
-        <div className="missile-wrap ms3" style={{ position: "absolute", zIndex: 12 }}>
-          <div className="missile-body">
-            <div className="missile-trail-seg" style={{ width: "80px", height: "3px", background: "linear-gradient(to left, rgba(255,140,0,0.8), transparent)", position: "absolute", right: "100%", top: "50%", transform: "translateY(-50%)" }}/>
-            <MissileSVG size={1.5}/>
-          </div>
-        </div>
-
-        {/* Hero content */}
-        <div style={{ maxWidth: "900px", padding: "0 24px 0 5vw", position: "relative", zIndex: 20 }}>
-          {/* Live label */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "24px" }}>
-            <span className="live-dot"/>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700, textTransform: "uppercase" }}>Breaking</span>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "rgba(255,245,228,0.3)", letterSpacing: "0.1em" }}>&#xB7; Solana &#xB7; Strait of Hormuz</span>
-          </div>
-
-          {/* Headline — glitch wrapper */}
-          <div className="glitch-wrap" style={{ marginBottom: "12px" }}>
-            <div className="g-main" style={{
-              fontFamily: "'Righteous', sans-serif",
-              fontSize: "clamp(4rem,14vw,10rem)",
-              lineHeight: 0.88,
-              textTransform: "uppercase",
-              letterSpacing: "0.01em",
-            }}>
-              <div style={{ color: "#fff5e4", WebkitTextStroke: "3px rgba(0,0,0,0.35)", textShadow: "4px 4px 0 rgba(0,0,0,0.4), 0 0 60px rgba(255,245,228,0.1)" }}>AH SHIT.</div>
-              <div style={{ color: "#fff5e4", WebkitTextStroke: "3px rgba(0,0,0,0.35)", textShadow: "4px 4px 0 rgba(0,0,0,0.4)" }}>HERE WE</div>
-              <div style={{ color: "#f5c400", WebkitTextStroke: "3px rgba(80,40,0,0.5)", textShadow: "4px 4px 0 #7a4a00, 0 0 80px rgba(245,196,0,0.4)" }}>GO AGAIN.</div>
-            </div>
-            <div className="g-r" aria-hidden style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(4rem,14vw,10rem)", lineHeight: 0.88, textTransform: "uppercase" }}>
-              <div>AH SHIT.</div>
-              <div>HERE WE</div>
-              <div style={{ color: "#f5c400" }}>GO AGAIN.</div>
-            </div>
-            <div className="g-b" aria-hidden style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(4rem,14vw,10rem)", lineHeight: 0.88, textTransform: "uppercase" }}>
-              <div>AH SHIT.</div>
-              <div>HERE WE</div>
-              <div style={{ color: "#f5c400" }}>GO AGAIN.</div>
+        {/* Missiles */}
+        {[
+          { cls: "ms1", size: 1.1 },
+          { cls: "ms2", size: 0.85 },
+          { cls: "ms3", size: 1.4 },
+        ].map(m => (
+          <div key={m.cls} className={`missile-wrap ${m.cls}`} style={{ position: "absolute", zIndex: 12 }}>
+            <div className="missile-body">
+              <div style={{ width: "55px", height: "2px", background: "linear-gradient(to left, rgba(255,107,0,0.7), transparent)", position: "absolute", right: "100%", top: "50%", transform: "translateY(-50%)" }}/>
+              <MissileSVG size={m.size}/>
             </div>
           </div>
+        ))}
 
-          <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600, fontSize: "1.3rem", color: "rgba(255,245,228,0.85)", lineHeight: 1.5, maxWidth: "440px", marginBottom: "36px" }}>
-            Ceasefire lasted about five minutes.<br/>
-            Another headline. Another panic.<br/>
-            <span style={{ color: "#f5c400", fontWeight: 700 }}>Here we go again.</span>
-          </p>
+        {/* Hero layout */}
+        <div style={{
+          width: "100%", maxWidth: "1280px", margin: "0 auto",
+          padding: "40px 5vw 80px",
+          display: "flex", flexWrap: "wrap",
+          alignItems: "center", gap: "40px",
+        }}>
 
-          {/* CTA buttons */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "32px" }}>
-            <a href={BUY_URL} target="_blank" className="btn-gta btn-gold">Buy Now</a>
-            <button onClick={() => scrollTo("chart")} className="btn-gta btn-red">Open Chart</button>
-          </div>
-
-          {/* Contract box */}
-          <div className="ca-box border-pulse" style={{ maxWidth: "520px", marginBottom: "28px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
-              <span className="badge-live">Live</span>
-              <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", color: "rgba(255,245,228,0.35)", letterSpacing: "0.25em", textTransform: "uppercase" }}>Contract Address &#xB7; Solana</span>
-            </div>
-            <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.78rem", color: "#fff5e4", wordBreak: "break-all", lineHeight: 1.5, marginBottom: "14px", opacity: 0.9 }}>{CA}</div>
-            <button onClick={copyCA} className="btn-gta btn-gold" style={{ fontSize: "0.9rem", padding: "9px 24px" }}>
-              {copyLabel}
-            </button>
-          </div>
-
-          {/* Community */}
-          <a href={X_URL} target="_blank" className="btn-gta btn-purple" style={{ fontSize: "0.85rem", padding: "9px 22px", display: "inline-flex", marginBottom: "32px" }}>
-            <SiX size={13}/> X Community
-          </a>
-
-          {/* Token stats */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
-            {[
-              { val: "1B", lbl: "Supply" },
-              { val: "0%", lbl: "Tax" },
-              { val: "SOL", lbl: "Chain" },
-            ].map((s, i) => (
-              <div key={i} className="stat-pill" style={{ minWidth: "90px" }}>
-                <div style={{ fontFamily: "'Righteous', sans-serif", fontSize: "1.8rem", color: ["#f5c400","#39ff14","#a78bfa"][i], lineHeight: 1, WebkitTextStroke: "1px rgba(0,0,0,0.3)" }}>{s.val}</div>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", color: "rgba(138,122,154,0.8)", letterSpacing: "0.2em", textTransform: "uppercase" }}>{s.lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════
-          SITUATION SECTION
-      ══════════════════════════════ */}
-      <section
-        data-section="situation"
-        style={{
-          position: "relative",
-          padding: "100px 5vw",
-          background: "linear-gradient(135deg, #120820 0%, #0d0712 50%, #1a0d2e 100%)",
-          clipPath: "polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%)",
-          marginTop: "-60px",
-          paddingTop: "140px",
-          paddingBottom: "140px",
-          overflow: "hidden",
-        }}
-      >
-        <div className="tac-grid" style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5 }}/>
-
-        <div style={{ maxWidth: "780px", position: "relative", zIndex: 5 }}>
-          <div>
+          {/* ── LEFT: Text ──────────────── */}
+          <div style={{ flex: "1 1 380px", position: "relative", zIndex: 20 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
-              <span className="badge-breaking">BREAKING</span>
-              <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(245,196,0,0.3), transparent)" }}/>
+              <span className="live-dot"/>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "#dc2626", letterSpacing: "0.22em", fontWeight: 700 }}>BREAKING</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(240,234,216,0.28)", letterSpacing: "0.1em" }}>· Solana · Global</span>
             </div>
 
-              <h2 style={{
-                fontFamily: "'Righteous', sans-serif",
-                fontSize: "clamp(3rem,7vw,5.5rem)",
-                lineHeight: 0.9,
+            {/* BIG headline — glitch */}
+            <div className="glitch-wrap" style={{ marginBottom: "20px" }}>
+              <div className="g-main" style={{
+                fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+                fontSize: "clamp(3.5rem, 11vw, 8.5rem)",
+                lineHeight: 0.92,
                 textTransform: "uppercase",
-                marginBottom: "28px",
-                WebkitTextStroke: "2px rgba(0,0,0,0.3)",
               }}>
-                <span style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>HERE WE </span>
-                <span style={{ color: "#f5c400", textShadow: "3px 3px 0 #7a4a00, 0 0 40px rgba(245,196,0,0.3)" }}>GO AGAIN.</span>
-              </h2>
-
-              <div style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1.25rem", color: "rgba(255,245,228,0.8)", lineHeight: 1.8, marginBottom: "32px" }}>
-                <p style={{ marginBottom: "10px" }}>Everyone has seen that moment.</p>
-                <p style={{ marginBottom: "10px" }}>Something finally calms down.</p>
-                <p style={{ marginBottom: "10px" }}>Five minutes later everything falls apart.</p>
-                <p style={{ color: "#f5c400", fontWeight: 700, fontSize: "1.4rem", fontFamily: "'Righteous', sans-serif", marginTop: "20px" }}>Here We Go Again.</p>
+                <div style={{ color: "#f0ead8", WebkitTextStroke: "2px rgba(0,0,0,0.3)", textShadow: "3px 3px 0 rgba(0,0,0,0.5)" }}>THEY SAID</div>
+                <div style={{ color: "#f0ead8", WebkitTextStroke: "2px rgba(0,0,0,0.3)", textShadow: "3px 3px 0 rgba(0,0,0,0.5)" }}>IT WAS</div>
+                <div style={{ color: "#ff6b00", WebkitTextStroke: "2px rgba(80,30,0,0.5)", textShadow: "3px 3px 0 #6a2800, 0 0 50px rgba(255,107,0,0.35)" }}>OVER.</div>
               </div>
+              <div className="g-r" aria-hidden style={{ fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif", fontSize: "clamp(3.5rem, 11vw, 8.5rem)", lineHeight: 0.92, textTransform: "uppercase" }}>
+                <div>THEY SAID</div><div>IT WAS</div><div style={{ color: "#ff6b00" }}>OVER.</div>
+              </div>
+              <div className="g-b" aria-hidden style={{ fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif", fontSize: "clamp(3.5rem, 11vw, 8.5rem)", lineHeight: 0.92, textTransform: "uppercase" }}>
+                <div>THEY SAID</div><div>IT WAS</div><div style={{ color: "#ff6b00" }}>OVER.</div>
+              </div>
+            </div>
 
-              <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1.05rem", color: "rgba(255,245,228,0.55)", lineHeight: 1.7, marginBottom: "36px", borderLeft: "3px solid rgba(255,107,0,0.5)", paddingLeft: "16px" }}>
-                $AGAIN is a Solana memecoin built around the world&#39;s favorite reaction whenever another breaking news notification arrives. No roadmap. No promises.
-              </p>
+            <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600, fontSize: "1.25rem", color: "rgba(240,234,216,0.75)", lineHeight: 1.55, maxWidth: "400px", marginBottom: "8px" }}>
+              World leaders on an emergency call.<br/>
+              Markets reacting to something.<br/>
+              <span style={{ color: "#e91e8c", fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "1.3rem" }}>Here we go again.</span>
+            </p>
 
-              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                <a href={BUY_URL} target="_blank" className="btn-gta btn-gold">Buy Now</a>
-                <a href={X_URL} target="_blank" className="btn-gta btn-purple" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "rgba(240,234,216,0.3)", marginBottom: "32px", letterSpacing: "0.05em" }}>
+              $AGAIN · Solana · No tax · 1B supply
+            </p>
+
+            {/* CTA */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "28px" }}>
+              <a href={BUY_URL} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "1rem", padding: "13px 32px" }}>Buy $AGAIN</a>
+              <button onClick={() => document.getElementById("chart")?.scrollIntoView({ behavior: "smooth" })} className="btn-gta btn-red" style={{ fontSize: "1rem", padding: "13px 28px" }}>Chart</button>
+            </div>
+
+            {/* CA box */}
+            <div className="ca-box border-pulse" style={{ maxWidth: "480px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "10px" }}>
+                <span className="live-dot"/>
+                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.54rem", color: "rgba(240,234,216,0.3)", letterSpacing: "0.22em" }}>CONTRACT ADDRESS · SOLANA</span>
+              </div>
+              <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.72rem", color: "#f0ead8", wordBreak: "break-all", lineHeight: 1.5, marginBottom: "14px", opacity: 0.85 }}>{CA}</div>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <button onClick={copyCA} className="btn-gta btn-orange" style={{ fontSize: "0.85rem", padding: "9px 22px" }}>{copyLabel}</button>
+                <a href={X_URL} target="_blank" className="btn-gta btn-pink" style={{ fontSize: "0.85rem", padding: "9px 20px", display: "inline-flex", alignItems: "center", gap: "5px" }}>
                   <SiX size={12}/> Community
                 </a>
               </div>
             </div>
+
+            {/* Stats */}
+            <div style={{ display: "flex", gap: "10px", marginTop: "20px", flexWrap: "wrap" }}>
+              {[
+                { v: "1B",  l: "Supply",  c: "#ff6b00" },
+                { v: "0%",  l: "Tax",     c: "#e91e8c" },
+                { v: "SOL", l: "Chain",   c: "#93c5fd" },
+              ].map((s, i) => (
+                <div key={i} className="stat-pill">
+                  <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.6rem", color: s.c, lineHeight: 1 }}>{s.v}</div>
+                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.5rem", color: "rgba(107,126,168,0.7)", letterSpacing: "0.2em", textTransform: "uppercase" }}>{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── RIGHT: Trump Broadcast Composite ── */}
+          <div style={{ flex: "1 1 440px", maxWidth: "580px", position: "relative", zIndex: 15 }}>
+            {/* Outer broadcast frame */}
+            <div className="broadcast-frame" style={{ borderRadius: "0", width: "100%" }}>
+
+              {/* Trump breaking news image — full size */}
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <img
+                  src={imgBreaking}
+                  alt="Breaking News — Ceasefire Violated"
+                  style={{ width: "100%", display: "block", objectFit: "cover" }}
+                />
+
+                {/* Scanline overlay */}
+                <div style={{
+                  position: "absolute", inset: 0, zIndex: 5,
+                  background: "repeating-linear-gradient(0deg,transparent 0px,transparent 3px,rgba(0,0,0,0.05) 3px,rgba(0,0,0,0.05) 4px)",
+                  pointerEvents: "none",
+                }}/>
+
+                {/* Top-right LIVE badge */}
+                <div style={{ position: "absolute", top: "10px", right: "10px", zIndex: 10, display: "flex", alignItems: "center", gap: "5px", background: "rgba(0,0,0,0.75)", padding: "4px 10px", border: "1px solid rgba(220,38,38,0.5)" }}>
+                  <span className="live-dot"/>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.6rem", color: "#dc2626", letterSpacing: "0.22em" }}>LIVE</span>
+                </div>
+
+                {/* PIP — CNN Live broadcast screenshot (bottom-left) */}
+                <div className="pip-frame" style={{
+                  position: "absolute", bottom: "12px", left: "12px", zIndex: 10,
+                  width: "38%", boxShadow: "0 4px 20px rgba(0,0,0,0.8)",
+                }}>
+                  <div className="pip-live-badge">
+                    <span className="live-dot" style={{ width: "6px", height: "6px" }}/>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.5rem", color: "#dc2626", letterSpacing: "0.2em" }}>LIVE</span>
+                  </div>
+                  <img
+                    src={imgCNNLive}
+                    alt="CNN Live Feed"
+                    style={{ width: "100%", display: "block", objectFit: "cover" }}
+                  />
+                  {/* PIP lower-third */}
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 5,
+                    background: "rgba(0,0,0,0.82)", borderTop: "1.5px solid #c62828",
+                    padding: "3px 6px",
+                  }}>
+                    <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.45rem", color: "#dc2626", letterSpacing: "0.12em", textTransform: "uppercase" }}>CNN LIVE</div>
+                    <div style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, fontSize: "0.58rem", color: "white", letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: 1.2 }}>Breaking Trial Coverage</div>
+                  </div>
+                </div>
+
+                {/* UTC timestamp top-left */}
+                <div style={{
+                  position: "absolute", top: "10px", left: "10px", zIndex: 10,
+                  fontFamily: "'Courier Prime', monospace", fontSize: "0.5rem",
+                  color: "rgba(240,234,216,0.4)", background: "rgba(0,0,0,0.6)",
+                  padding: "2px 6px",
+                }}>
+                  {utcTime || "—"}
+                </div>
+              </div>
+            </div>
+
+            {/* External caption bar below frame */}
+            <div style={{
+              background: "linear-gradient(90deg, #c62828, #7f0000)",
+              padding: "10px 16px",
+              borderTop: "2px solid rgba(255,107,0,0.6)",
+            }}>
+              <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.58rem", color: "rgba(255,255,255,0.7)", letterSpacing: "0.2em", marginBottom: "3px" }}>BREAKING NEWS</div>
+              <div style={{ fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif", fontSize: "1.4rem", color: "white", letterSpacing: "0.04em", textTransform: "uppercase", lineHeight: 1.1 }}>
+                CEASEFIRE VIOLATED — SITUATION TENSE
+              </div>
+              <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.1em", marginTop: "4px", textTransform: "uppercase" }}>
+                Reports of fresh clashes emerge &nbsp;·&nbsp; Markets in freefall &nbsp;·&nbsp; Here we go again
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          LIVE TIMELINE
-      ══════════════════════════════ */}
-      <section style={{ padding: "100px 5vw", background: "#0d0712", position: "relative", overflow: "hidden" }}>
-        <div className="tac-grid" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}/>
-
-        <div style={{ maxWidth: "720px", position: "relative", zIndex: 5 }}>
+      {/* ══════════════════════════════════════
+          SITUATION
+      ══════════════════════════════════════ */}
+      <section style={{
+        position: "relative", padding: "120px 5vw",
+        background: BG_SECTION_A,
+        clipPath: "polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%)",
+        marginTop: "-60px", paddingTop: "140px", paddingBottom: "140px",
+        overflow: "hidden",
+      }}>
+        <div className="tac-grid" style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.6 }}/>
+        <div style={{ maxWidth: "740px", position: "relative", zIndex: 5 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
-            <span className="live-dot"/>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700, textTransform: "uppercase" }}>Live Updates</span>
+            <span className="badge-breaking">BREAKING</span>
+            <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(255,107,0,0.35), transparent)" }}/>
           </div>
-          <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(2.5rem,7vw,5rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "48px", WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}>
-            <span style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>SITUATION </span>
-            <span style={{ color: "#f5c400", textShadow: "3px 3px 0 #7a4a00" }}>REPORT</span>
+
+          <h2 style={{
+            fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+            fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+            lineHeight: 0.92, textTransform: "uppercase",
+            marginBottom: "28px",
+            color: "#f0ead8", WebkitTextStroke: "1.5px rgba(0,0,0,0.3)",
+            textShadow: "3px 3px 0 rgba(0,0,0,0.4)",
+          }}>
+            HERE WE <span style={{ color: "#ff6b00", textShadow: "3px 3px 0 #6a2800, 0 0 35px rgba(255,107,0,0.3)" }}>GO AGAIN.</span>
           </h2>
 
-          <div style={{ position: "relative", paddingLeft: "32px" }}>
-            {/* Vertical line SVG */}
-            <svg style={{ position: "absolute", left: "8px", top: 0, height: "100%", width: "4px" }} viewBox="0 0 4 400" preserveAspectRatio="none">
-              <line x1="2" y1="0" x2="2" y2="400" stroke="url(#tlGrad)" strokeWidth="2" className="timeline-svg-line drawn"/>
+          <div style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1.2rem", color: "rgba(240,234,216,0.78)", lineHeight: 1.75, marginBottom: "28px" }}>
+            <p style={{ marginBottom: "10px" }}>Everyone has seen that moment.</p>
+            <p style={{ marginBottom: "10px" }}>Something finally calms down.</p>
+            <p style={{ marginBottom: "10px" }}>Five minutes later everything falls apart.</p>
+            <p style={{ color: "#e91e8c", fontFamily: "'Teko', sans-serif", fontWeight: 600, fontSize: "1.55rem", letterSpacing: "0.06em", marginTop: "16px", textTransform: "uppercase" }}>Here We Go Again.</p>
+          </div>
+
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.95rem", color: "rgba(240,234,216,0.5)", lineHeight: 1.7, marginBottom: "32px", borderLeft: "3px solid rgba(255,107,0,0.45)", paddingLeft: "16px" }}>
+            $AGAIN is a Solana memecoin built around the world's favorite reaction whenever another breaking news notification arrives. No roadmap. No promises.
+          </p>
+
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <a href={BUY_URL} target="_blank" className="btn-gta btn-orange">Buy $AGAIN</a>
+            <a href={X_URL} target="_blank" className="btn-gta btn-pink" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+              <SiX size={12}/> Community
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          LIVE TIMELINE
+      ══════════════════════════════════════ */}
+      <section style={{ padding: "100px 5vw", background: "#080d18", position: "relative", overflow: "hidden" }}>
+        <div className="tac-grid" style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}/>
+        <div style={{ maxWidth: "680px", position: "relative", zIndex: 5 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "18px" }}>
+            <span className="live-dot"/>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "#dc2626", letterSpacing: "0.22em", fontWeight: 700, textTransform: "uppercase" }}>Live Updates</span>
+          </div>
+          <h2 style={{
+            fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+            fontSize: "clamp(2.2rem, 6vw, 4.5rem)",
+            lineHeight: 0.92, textTransform: "uppercase", marginBottom: "44px",
+            color: "#f0ead8", WebkitTextStroke: "1.5px rgba(0,0,0,0.3)",
+            textShadow: "3px 3px 0 rgba(0,0,0,0.4)",
+          }}>
+            SITUATION <span style={{ color: "#ff6b00", textShadow: "3px 3px 0 #6a2800" }}>REPORT</span>
+          </h2>
+
+          <div style={{ position: "relative", paddingLeft: "28px" }}>
+            <svg style={{ position: "absolute", left: "6px", top: 0, height: "100%", width: "3px" }} viewBox="0 0 3 400" preserveAspectRatio="none">
               <defs>
-                <linearGradient id="tlGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#cc0000"/>
-                  <stop offset="50%" stopColor="rgba(107,0,204,0.6)"/>
+                <linearGradient id="tlG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#c62828"/>
+                  <stop offset="55%" stopColor="rgba(233,30,140,0.4)"/>
                   <stop offset="100%" stopColor="transparent"/>
                 </linearGradient>
               </defs>
+              <line x1="1.5" y1="0" x2="1.5" y2="400" stroke="url(#tlG)" strokeWidth="2"/>
             </svg>
-
             {TL.map((item, i) => (
               <div key={i} data-tl={i} style={{
-                marginBottom: "28px",
-                position: "relative",
+                marginBottom: "24px", position: "relative",
                 opacity: visibleTl.has(i) ? 1 : 0,
-                transform: visibleTl.has(i) ? "translateY(0)" : "translateY(30px)",
-                transition: `all 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s`,
+                transform: visibleTl.has(i) ? "translateY(0)" : "translateY(24px)",
+                transition: `all 0.65s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s`,
               }}>
                 <div style={{
-                  position: "absolute", left: "-28px", top: "6px",
-                  width: "10px", height: "10px", borderRadius: "50%",
-                  background: i === TL.length-1 ? "#f5c400" : "#cc0000",
-                  boxShadow: i === TL.length-1 ? "0 0 10px rgba(245,196,0,0.8)" : "0 0 8px rgba(204,0,0,0.7)",
+                  position: "absolute", left: "-24px", top: "5px",
+                  width: "9px", height: "9px", borderRadius: "50%",
+                  background: i === TL.length-1 ? "#ff6b00" : "#dc2626",
+                  boxShadow: i === TL.length-1 ? "0 0 8px rgba(255,107,0,0.8)" : "0 0 7px rgba(220,38,38,0.7)",
                 }}/>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-                  <span className={tagClass[item.label] || "badge-update"}>{item.label}</span>
-                  <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.65rem", color: "rgba(138,122,154,0.6)", letterSpacing: "0.12em" }}>{item.time} UTC</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "3px" }}>
+                  <span className={badgeClass[item.badge] || "badge-update"}>{item.badge}</span>
+                  <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "rgba(107,126,168,0.6)", letterSpacing: "0.1em" }}>{item.time} UTC</span>
                 </div>
-                <div style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600, fontSize: "1.2rem", color: "#fff5e4" }}>{item.text}</div>
-                {i < TL.length-1 && <div style={{ height: "1px", background: "rgba(107,0,204,0.12)", marginTop: "16px" }}/>}
+                <div style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600, fontSize: "1.15rem", color: "#f0ead8" }}>{item.text}</div>
+                {i < TL.length-1 && <div style={{ height: "1px", background: "rgba(255,107,0,0.08)", marginTop: "14px" }}/>}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          LIVE CHART
-      ══════════════════════════════ */}
+      {/* ══════════════════════════════════════
+          CHART
+      ══════════════════════════════════════ */}
       <section id="chart" style={{
-        padding: "100px 5vw 120px",
-        background: "linear-gradient(135deg, #1a0d2e 0%, #0d0712 50%, #12080f 100%)",
+        padding: "140px 5vw",
+        background: BG_SECTION_A,
         clipPath: "polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%)",
-        marginTop: "-60px",
-        paddingTop: "140px",
-        paddingBottom: "140px",
-        position: "relative",
-        overflow: "hidden",
+        marginTop: "-60px", paddingTop: "140px", paddingBottom: "140px",
+        position: "relative", overflow: "hidden",
       }}>
-        <div className="tac-grid" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}/>
+        <div className="tac-grid" style={{ position: "absolute", inset: 0, opacity: 0.35, pointerEvents: "none" }}/>
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 5 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
             <span className="live-dot"/>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700 }}>LIVE FEED</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "#dc2626", letterSpacing: "0.22em", fontWeight: 700, textTransform: "uppercase" }}>Live Feed</span>
           </div>
-          <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(2.5rem,7vw,5rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "28px", WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}>
-            <span style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>THE </span>
-            <span style={{ color: "#f5c400", textShadow: "3px 3px 0 #7a4a00" }}>CHART</span>
+          <h2 style={{
+            fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+            fontSize: "clamp(2.2rem, 6vw, 4.5rem)",
+            lineHeight: 0.92, textTransform: "uppercase", marginBottom: "28px",
+            color: "#f0ead8", WebkitTextStroke: "1.5px rgba(0,0,0,0.3)",
+            textShadow: "3px 3px 0 rgba(0,0,0,0.4)",
+          }}>
+            THE <span style={{ color: "#ff6b00", textShadow: "3px 3px 0 #6a2800" }}>CHART</span>
           </h2>
 
-          {/* Chart frame */}
           <div className="border-pulse" style={{
-            border: "1px solid rgba(245,196,0,0.4)",
-            background: "#090510",
-            marginBottom: "24px",
-            position: "relative",
-            overflow: "hidden",
+            border: "1px solid rgba(255,107,0,0.3)",
+            background: "#07091a",
+            marginBottom: "22px", overflow: "hidden",
           }}>
-            {/* Frame header */}
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px", background: "rgba(0,0,0,0.5)", borderBottom: "1px solid rgba(245,196,0,0.15)" }}>
-              <span className="live-dot"/>
-              <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(255,245,228,0.4)", letterSpacing: "0.15em" }}>$AGAIN / USD</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "9px 14px", background: "rgba(0,0,0,0.4)", borderBottom: "1px solid rgba(255,107,0,0.12)" }}>
+              <span className="live-dot" style={{ width: "6px", height: "6px" }}/>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.56rem", color: "rgba(240,234,216,0.35)", letterSpacing: "0.14em", textTransform: "uppercase" }}>$AGAIN / USD &nbsp;·&nbsp; Solana</span>
             </div>
             <div dangerouslySetInnerHTML={{ __html: `<style>#dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}@media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}#dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}</style><div id="dexscreener-embed"><iframe src="https://dexscreener.com/solana/HTWiEMpyyqRmA4o3jGioqMCtKXN8Ca5WGogUT1PYZP64?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe></div>` }}/>
           </div>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
-            <a href={DEX_URL} target="_blank" className="btn-gta btn-red">Open DexScreener</a>
-            <button onClick={copyCA} className="btn-gta btn-gold">{copyLabel}</button>
-            <a href={PUMP_URL} target="_blank" className="btn-gta btn-orange">PumpFun</a>
+            <a href={DEX_URL} target="_blank" className="btn-gta btn-red">DexScreener</a>
+            <button onClick={copyCA} className="btn-gta btn-orange">{copyLabel}</button>
+            <a href={PUMP_URL} target="_blank" className="btn-gta btn-dark">PumpFun</a>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* ══════════════════════════════════════
           ARCHIVE
-      ══════════════════════════════ */}
-      <section id="archive" style={{ padding: "100px 5vw 120px", background: "#0d0712", position: "relative", overflow: "hidden" }}>
+      ══════════════════════════════════════ */}
+      <section id="archive" style={{ padding: "100px 5vw 120px", background: "#080d18", position: "relative", overflow: "hidden" }}>
         <div className="tac-grid" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}/>
         <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 5 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
             <span className="badge-breaking">Archive</span>
           </div>
-          <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(3rem,9vw,7rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "12px", WebkitTextStroke: "3px rgba(0,0,0,0.3)" }}>
-            <span style={{ color: "#fff5e4", textShadow: "4px 4px 0 rgba(0,0,0,0.4)" }}>LATEST </span>
-            <span style={{ color: "#f5c400", textShadow: "4px 4px 0 #7a4a00, 0 0 60px rgba(245,196,0,0.3)" }}>EVIDENCE</span>
+          <h2 style={{
+            fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+            fontSize: "clamp(2.8rem, 8vw, 6.5rem)",
+            lineHeight: 0.9, textTransform: "uppercase", marginBottom: "52px",
+            color: "#f0ead8", WebkitTextStroke: "2px rgba(0,0,0,0.3)",
+            textShadow: "4px 4px 0 rgba(0,0,0,0.4)",
+          }}>
+            LATEST <span style={{ color: "#ff6b00", textShadow: "4px 4px 0 #6a2800, 0 0 50px rgba(255,107,0,0.25)" }}>EVIDENCE</span>
           </h2>
-          <p style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 300, fontSize: "0.9rem", color: "rgba(138,122,154,0.5)", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "52px" }}>Field Archive</p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "20px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "18px" }}>
             {ARCHIVE.map((item, i) => (
               <div key={i} className="tilt-card" style={{
-                background: "linear-gradient(135deg, rgba(107,0,204,0.08), rgba(13,7,18,0.95))",
-                border: "1px solid rgba(107,0,204,0.22)",
-                overflow: "hidden",
-                position: "relative",
-                transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+                background: "linear-gradient(135deg, rgba(255,107,0,0.06), rgba(12,18,32,0.97))",
+                border: "1px solid rgba(255,107,0,0.18)",
+                overflow: "hidden", position: "relative",
+                transition: "border-color 0.3s, box-shadow 0.3s",
               }}>
-                {/* Tag */}
-                <div style={{ position: "absolute", top: "10px", right: "10px", zIndex: 3 }}>
-                  <span className={tagClass[item.tag] || "badge-update"}>{item.tag}</span>
+                <div style={{ position: "absolute", top: "8px", right: "8px", zIndex: 3 }}>
+                  <span className={badgeClass[item.tag] || "badge-update"}>{item.tag}</span>
                 </div>
-
-                {/* Image */}
-                <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#080410" }}>
-                  <img src={item.img} alt={item.cap} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "contrast(1.05) saturate(0.9)", transition: "transform 0.6s ease" }}
-                    onMouseOver={e => (e.currentTarget.style.transform = "scale(1.05)")}
+                <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#06080f" }}>
+                  <img
+                    src={item.img} alt={item.cap}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.55s ease", filter: "contrast(1.05) saturate(0.88)" }}
+                    onMouseOver={e => (e.currentTarget.style.transform = "scale(1.04)")}
                     onMouseOut={e => (e.currentTarget.style.transform = "scale(1)")}
                   />
-                  {/* Scanline overlay on image */}
-                  <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg,transparent 0px,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px)", pointerEvents: "none" }}/>
                 </div>
-
-                <div style={{ padding: "14px 16px", borderTop: "1px solid rgba(107,0,204,0.15)", position: "relative", zIndex: 2 }}>
-                  <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600, fontSize: "1rem", color: "#fff5e4", marginBottom: "4px" }}>{item.cap}</p>
-                  <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.52rem", color: "rgba(138,122,154,0.45)", letterSpacing: "0.1em" }}>Logged: 2026-06-27 &#xB7; {item.cam}</p>
+                <div style={{ padding: "13px 15px", borderTop: "1px solid rgba(255,107,0,0.1)" }}>
+                  <p style={{ fontFamily: "'Teko', sans-serif", fontWeight: 500, fontSize: "1.15rem", color: "#f0ead8", letterSpacing: "0.04em", textTransform: "uppercase" }}>{item.cap}</p>
                 </div>
               </div>
             ))}
@@ -746,113 +714,131 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* ══════════════════════════════════════
           HOW TO BUY
-      ══════════════════════════════ */}
+      ══════════════════════════════════════ */}
       <section style={{
         padding: "140px 5vw 160px",
-        background: "linear-gradient(135deg, #1a0d2e 0%, #120820 50%, #0d0712 100%)",
+        background: BG_SECTION_B,
         clipPath: "polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%)",
-        marginTop: "-60px",
-        position: "relative",
-        overflow: "hidden",
+        marginTop: "-60px", position: "relative", overflow: "hidden",
       }}>
         <div className="tac-grid" style={{ position: "absolute", inset: 0, opacity: 0.4, pointerEvents: "none" }}/>
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 5 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
             <span className="badge-update">The Play</span>
           </div>
-          <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(2.5rem,7vw,5.5rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "56px", WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}>
-            <div style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>GET IN</div>
-            <div style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>BEFORE IT</div>
-            <div style={{ color: "#f5c400", textShadow: "3px 3px 0 #7a4a00, 0 0 50px rgba(245,196,0,0.3)" }}>GOES AGAIN.</div>
+          <h2 style={{
+            fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+            fontSize: "clamp(2.2rem, 6vw, 5rem)",
+            lineHeight: 0.92, textTransform: "uppercase", marginBottom: "52px",
+            color: "#f0ead8", WebkitTextStroke: "1.5px rgba(0,0,0,0.3)",
+            textShadow: "3px 3px 0 rgba(0,0,0,0.4)",
+          }}>
+            <div>GET IN BEFORE</div>
+            <div style={{ color: "#ff6b00", textShadow: "3px 3px 0 #6a2800, 0 0 40px rgba(255,107,0,0.3)" }}>IT GOES AGAIN.</div>
           </h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "20px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: "18px" }}>
             {[
-              { n: "01", title: "Get a Wallet",  body: "Download Phantom or Solflare.\nCreate a wallet.\nSave your recovery phrase.", links: [{ l: "Phantom", h: "https://phantom.app/" }, { l: "Solflare", h: "https://solflare.com/" }], c: "#ff6b00", shadow: "#5a2000" },
-              { n: "02", title: "Get SOL",        body: "Fund your wallet with SOL.", links: [], c: "#f5c400", shadow: "#7a4a00" },
-              { n: "03", title: "Hit Jupiter",    body: "Open Jupiter.\nPaste the contract.\nSwap SOL for $AGAIN.", links: [{ l: "Open Jupiter", h: BUY_URL }], c: "#a78bfa", shadow: "#1a0040" },
-              { n: "04", title: "Hold the Line",  body: "Welcome back.\nHere we go again.", links: [], c: "#cc0000", shadow: "#4a0000" },
+              { n: "01", title: "Get a Wallet",  body: "Download Phantom or Solflare.\nCreate a wallet.\nSave your seed phrase.",
+                links: [{ l: "Phantom", h: "https://phantom.app/" }, { l: "Solflare", h: "https://solflare.com/" }], c: "#ff6b00" },
+              { n: "02", title: "Get SOL",       body: "Fund your wallet with SOL from any exchange.", links: [], c: "#e91e8c" },
+              { n: "03", title: "Hit Jupiter",   body: "Open Jupiter, paste the contract, swap SOL for $AGAIN.",
+                links: [{ l: "Open Jupiter", h: BUY_URL }], c: "#93c5fd" },
+              { n: "04", title: "Hold.",          body: "Welcome back.\nHere we go again.", links: [], c: "#dc2626" },
             ].map((step, i) => (
               <div key={i} className="tilt-card" style={{
-                background: "linear-gradient(135deg, rgba(107,0,204,0.09), rgba(13,7,18,0.95))",
-                border: `1px solid rgba(${step.c === "#f5c400" ? "245,196,0" : step.c === "#ff6b00" ? "255,107,0" : step.c === "#a78bfa" ? "167,139,250" : "204,0,0"},0.25)`,
-                padding: "28px 24px",
-                position: "relative",
-                overflow: "hidden",
+                background: `linear-gradient(135deg, rgba(${step.c === "#ff6b00" ? "255,107,0" : step.c === "#e91e8c" ? "233,30,140" : step.c === "#93c5fd" ? "147,197,253" : "220,38,38"},0.07), rgba(10,16,32,0.96))`,
+                border: `1px solid rgba(${step.c === "#ff6b00" ? "255,107,0" : step.c === "#e91e8c" ? "233,30,140" : step.c === "#93c5fd" ? "147,197,253" : "220,38,38"},0.22)`,
+                padding: "26px 22px", position: "relative", overflow: "hidden",
               }}>
-                {/* Big step number watermark */}
-                <div style={{ position: "absolute", top: "-8px", right: "12px", fontFamily: "'Righteous', sans-serif", fontSize: "5rem", color: "rgba(255,255,255,0.04)", lineHeight: 1, pointerEvents: "none", WebkitTextStroke: "1px rgba(255,255,255,0.03)" }}>{step.n}</div>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.6rem", color: step.c, letterSpacing: "0.2em", fontWeight: 700, marginBottom: "8px", textTransform: "uppercase" }}>{step.n} &#8212;</div>
-                <div style={{ fontFamily: "'Righteous', sans-serif", fontWeight: 400, fontSize: "1.5rem", color: step.c, textTransform: "uppercase", marginBottom: "14px", lineHeight: 1, textShadow: `2px 2px 0 ${step.shadow}`, WebkitTextStroke: "1px rgba(0,0,0,0.3)" }}>{step.title}</div>
-                <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1rem", color: "rgba(255,245,228,0.75)", lineHeight: 1.6, whiteSpace: "pre-line", marginBottom: step.links.length > 0 ? "16px" : 0 }}>{step.body}</p>
-                {step.links.map((lk, j) => (
-                  <a key={j} href={lk.h} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "0.8rem", padding: "7px 18px", marginRight: "8px", display: "inline-block" }}>{lk.l}</a>
-                ))}
+                <div style={{ position: "absolute", top: "-6px", right: "10px", fontFamily: "'Bebas Neue', sans-serif", fontSize: "4.5rem", color: "rgba(255,255,255,0.03)", lineHeight: 1, pointerEvents: "none" }}>{step.n}</div>
+                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: step.c, letterSpacing: "0.18em", fontWeight: 700, marginBottom: "7px", textTransform: "uppercase" }}>{step.n} —</div>
+                <div style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 600, fontSize: "1.4rem", color: step.c, textTransform: "uppercase", marginBottom: "12px", lineHeight: 1, letterSpacing: "0.04em" }}>{step.title}</div>
+                <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "0.98rem", color: "rgba(240,234,216,0.7)", lineHeight: 1.65, whiteSpace: "pre-line", marginBottom: step.links.length ? "14px" : 0 }}>{step.body}</p>
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                  {step.links.map((lk, j) => (
+                    <a key={j} href={lk.h} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "0.75rem", padding: "7px 15px" }}>{lk.l}</a>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* ══════════════════════════════════════
           FOOTER
-      ══════════════════════════════ */}
+      ══════════════════════════════════════ */}
       <footer style={{
-        background: "linear-gradient(180deg, #0d0712 0%, #07040e 100%)",
-        borderTop: "1px solid rgba(245,196,0,0.2)",
-        padding: "64px 5vw 40px",
-        position: "relative",
-        overflow: "hidden",
+        background: "linear-gradient(180deg, #080d18 0%, #05080f 100%)",
+        borderTop: "1px solid rgba(255,107,0,0.18)",
+        padding: "60px 5vw 36px",
+        position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, #cc0000, #6b00cc, #ff6b00, #f5c400, transparent)" }}/>
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: "linear-gradient(90deg, #c62828, #ff6b00, #e91e8c, transparent)" }}/>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "40px", marginBottom: "48px" }}>
-            <div style={{ maxWidth: "340px" }}>
-              <div style={{ fontFamily: "'Righteous', sans-serif", fontSize: "3.5rem", color: "#f5c400", letterSpacing: "0.04em", lineHeight: 1, WebkitTextStroke: "2px rgba(0,0,0,0.35)", textShadow: "3px 3px 0 #7a4a00, 0 0 40px rgba(245,196,0,0.3)", marginBottom: "14px" }}>$AGAIN</div>
-              <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1rem", color: "rgba(138,122,154,0.65)", lineHeight: 1.7, marginBottom: "20px" }}>Another headline.<br/>Another day.<br/>Here we go again.</p>
-              <a href={X_URL} target="_blank" className="btn-gta btn-purple" style={{ fontSize: "0.85rem", padding: "9px 20px" }}>
-                <SiX size={12}/> X Community
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "36px", marginBottom: "44px" }}>
+            <div style={{ maxWidth: "300px" }}>
+              {/* Footer logo — white on black */}
+              <div style={{
+                display: "inline-block",
+                background: "#000", color: "#fff",
+                fontFamily: "'Pricedown', 'Anton', 'Oswald', sans-serif",
+                fontSize: "2.8rem", padding: "3px 18px 6px",
+                letterSpacing: "0.05em", textTransform: "uppercase",
+                lineHeight: 1, marginBottom: "14px",
+              }}>$AGAIN</div>
+              <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "0.95rem", color: "rgba(240,234,216,0.45)", lineHeight: 1.7, marginBottom: "18px" }}>
+                Another headline.<br/>Another day.<br/>Here we go again.
+              </p>
+              <a href={X_URL} target="_blank" className="btn-gta btn-pink" style={{ fontSize: "0.8rem", padding: "8px 18px", display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                <SiX size={11}/> X Community
               </a>
             </div>
 
-            <div style={{ display: "flex", gap: "48px" }}>
+            <div style={{ display: "flex", gap: "44px" }}>
               <div>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.45)", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "20px" }}>Token</div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-                  {[
-                    { l: "Contract", href: undefined, action: copyCA },
-                    { l: "Jupiter",    href: BUY_URL  },
-                    { l: "PumpFun",   href: PUMP_URL  },
-                    { l: "DexScreener",href: DEX_URL  },
-                  ].map((lk, i) => lk.href ? (
-                    <a key={i} href={lk.href} target="_blank" style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 400, fontSize: "1rem", color: "rgba(255,245,228,0.6)", textDecoration: "none", letterSpacing: "0.06em", textTransform: "uppercase", transition: "color 0.2s" }}
-                      onMouseOver={e => (e.currentTarget.style.color = "#f5c400")} onMouseOut={e => (e.currentTarget.style.color = "rgba(255,245,228,0.6)")}
-                    >{lk.l}</a>
-                  ) : (
-                    <button key={i} onClick={lk.action} style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 400, fontSize: "1rem", color: "rgba(255,245,228,0.6)", background: "none", border: "none", cursor: "pointer", textAlign: "left", letterSpacing: "0.06em", textTransform: "uppercase", transition: "color 0.2s", padding: 0 }}
-                      onMouseOver={e => (e.currentTarget.style.color = "#f5c400")} onMouseOut={e => (e.currentTarget.style.color = "rgba(255,245,228,0.6)")}
-                    >{lk.l}</button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.45)", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "20px" }}>Community</div>
-                <a href={X_URL} target="_blank" style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 400, fontSize: "1rem", color: "rgba(255,245,228,0.6)", textDecoration: "none", letterSpacing: "0.06em", textTransform: "uppercase", display: "flex", alignItems: "center", gap: "6px", transition: "color 0.2s" }}
-                  onMouseOver={e => (e.currentTarget.style.color = "#a78bfa")} onMouseOut={e => (e.currentTarget.style.color = "rgba(255,245,228,0.6)")}
-                ><SiX size={12}/> X Community</a>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.56rem", color: "rgba(107,126,168,0.4)", letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: "18px" }}>Links</div>
+                {[
+                  { l: "Contract",    href: undefined, action: copyCA },
+                  { l: "Jupiter",     href: BUY_URL },
+                  { l: "PumpFun",     href: PUMP_URL },
+                  { l: "DexScreener", href: DEX_URL },
+                ].map((lk, i) => lk.href ? (
+                  <a key={i} href={lk.href} target="_blank" style={{
+                    display: "block", marginBottom: "12px",
+                    fontFamily: "'Oswald', sans-serif", fontWeight: 400, fontSize: "0.95rem",
+                    color: "rgba(240,234,216,0.45)", textDecoration: "none",
+                    letterSpacing: "0.05em", textTransform: "uppercase",
+                    transition: "color 0.2s",
+                  }}
+                    onMouseOver={e => (e.currentTarget.style.color = "#ff6b00")}
+                    onMouseOut={e => (e.currentTarget.style.color = "rgba(240,234,216,0.45)")}
+                  >{lk.l}</a>
+                ) : (
+                  <button key={i} onClick={lk.action} style={{
+                    display: "block", marginBottom: "12px", width: "100%", textAlign: "left",
+                    fontFamily: "'Oswald', sans-serif", fontWeight: 400, fontSize: "0.95rem",
+                    color: "rgba(240,234,216,0.45)", background: "none", border: "none", cursor: "pointer",
+                    letterSpacing: "0.05em", textTransform: "uppercase", padding: 0,
+                    transition: "color 0.2s",
+                  }}
+                    onMouseOver={e => (e.currentTarget.style.color = "#ff6b00")}
+                    onMouseOut={e => (e.currentTarget.style.color = "rgba(240,234,216,0.45)")}
+                  >{lk.l}</button>
+                ))}
               </div>
             </div>
           </div>
 
-          <div style={{ borderTop: "1px solid rgba(107,0,204,0.12)", paddingTop: "24px" }}>
-            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "rgba(138,122,154,0.35)", maxWidth: "540px", lineHeight: 1.7, marginBottom: "10px" }}>
-              $AGAIN is a meme token with no intrinsic value or expectation of profit. Nothing on this site is financial advice. Do your own research.
+          <div style={{ borderTop: "1px solid rgba(255,107,0,0.08)", paddingTop: "22px" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.6rem", color: "rgba(107,126,168,0.3)", maxWidth: "500px", lineHeight: 1.7, marginBottom: "8px" }}>
+              $AGAIN is a meme token with no intrinsic value or expectation of financial return. Nothing here is financial advice. DYOR.
             </p>
-            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.2)" }}>
-              &#169; 2026 $AGAIN &#xB7; On Solana &#xB7; Ah Shit.
+            <p style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.55rem", color: "rgba(107,126,168,0.2)" }}>
+              © 2026 $AGAIN · Solana · Ah Shit.
             </p>
           </div>
         </div>
