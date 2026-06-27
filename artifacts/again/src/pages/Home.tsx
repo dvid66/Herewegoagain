@@ -374,9 +374,9 @@ export default function Home() {
           <a href={X_URL} target="_blank" className="btn-gta btn-orange" style={{ fontSize: "0.85rem", padding: "7px 18px", gap: "5px" }}>
             <SiX size={11}/> Community
           </a>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginLeft: "10px", paddingLeft: "12px", borderLeft: "1px solid rgba(107,0,204,0.3)" }}>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.6rem", color: "rgba(255,245,228,0.35)" }} className="hidden-sm">{utcTime}</span>
-            <SignalBars/>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", marginLeft: "8px", paddingLeft: "10px", borderLeft: "1px solid rgba(107,0,204,0.25)" }}>
+            <span className="live-dot"/>
+            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.56rem", color: "rgba(255,245,228,0.3)", letterSpacing: "0.12em" }}>SOL</span>
           </div>
         </div>
       </nav>
@@ -457,36 +457,13 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Corner tags */}
-        <div style={{ position: "absolute", top: "100px", left: "20px", zIndex: 20 }}>
-          <span className="badge-cam">26.2&#176;N 56.3&#176;E</span>
-        </div>
-        <div style={{ position: "absolute", top: "100px", right: "20px", zIndex: 20 }}>
-          <span className="badge-cam">CAM 01 &#xB7; FEED A</span>
-        </div>
-
-        {/* Ship scene — bottom right corner */}
-        <div style={{ position: "absolute", bottom: "60px", right: "40px", opacity: 0.6, zIndex: 10 }}>
-          <div className="ship-scene">
-            <div className="smoke" style={{ width: "18px", height: "18px", borderRadius: "50%", background: "radial-gradient(circle, rgba(180,180,180,0.8), transparent)", display: "block" }}/>
-            <div className="blast" style={{ width: "22px", height: "22px", background: "radial-gradient(circle, #f5c400 0%, #ff6b00 50%, transparent 100%)", borderRadius: "50%", display: "block" }}/>
-            <div className="deb-a" style={{ width: "6px", height: "3px", background: "#8899aa", display: "block" }}/>
-            <div className="deb-b" style={{ width: "4px", height: "4px", background: "#99aacc", display: "block" }}/>
-            <div className="deb-c" style={{ width: "5px", height: "2px", background: "#7788aa", display: "block" }}/>
-            <div className="splash" style={{ width: "30px", height: "8px", background: "rgba(100,160,200,0.5)", borderRadius: "50% 50% 0 0", display: "block" }}/>
-            <ShipSVG/>
-          </div>
-          <div style={{ marginTop: "4px", textAlign: "right" }}>
-            <span className="badge-cam">STRAIT OF HORMUZ</span>
-          </div>
-        </div>
-
         {/* Hero content */}
         <div style={{ maxWidth: "900px", padding: "0 24px 0 5vw", position: "relative", zIndex: 20 }}>
-          {/* Lower third */}
-          <div className="lower-third-wrap" style={{ marginBottom: "28px", display: "inline-flex" }}>
-            <div className="lt-label">&#9888; SOLANA &#xB7; BREAKING NEWS &#xB7; STRAIT OF HORMUZ</div>
-            <div className="lt-text">$AGAIN &#x2014; HERE WE GO AGAIN</div>
+          {/* Live label */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "24px" }}>
+            <span className="live-dot"/>
+            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700, textTransform: "uppercase" }}>Breaking</span>
+            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "rgba(255,245,228,0.3)", letterSpacing: "0.1em" }}>&#xB7; Solana &#xB7; Strait of Hormuz</span>
           </div>
 
           {/* Headline — glitch wrapper */}
@@ -577,16 +554,12 @@ export default function Home() {
       >
         <div className="tac-grid" style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5 }}/>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "48px", maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 5 }}>
-          {/* Text block */}
-          <div style={{ flex: "1 1 420px" }}>
-            <div className={`reveal-clip ${visibleSections.has("situation") ? "revealed" : ""}`} style={{ animationDelay: "0.1s" }}>
-              <div className="section-title-bar">
-                <span className="badge-breaking">BREAKING</span>
-                <span className="badge-world">WORLD</span>
-                <div className="stb-line"/>
-                <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.6)", letterSpacing: "0.2em" }}>THE SITUATION</span>
-              </div>
+        <div style={{ maxWidth: "780px", position: "relative", zIndex: 5 }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
+              <span className="badge-breaking">BREAKING</span>
+              <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(245,196,0,0.3), transparent)" }}/>
+            </div>
 
               <h2 style={{
                 fontFamily: "'Righteous', sans-serif",
@@ -600,58 +573,24 @@ export default function Home() {
                 <span style={{ color: "#f5c400", textShadow: "3px 3px 0 #7a4a00, 0 0 40px rgba(245,196,0,0.3)" }}>GO AGAIN.</span>
               </h2>
 
-              <div style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1.15rem", color: "rgba(255,245,228,0.8)", lineHeight: 1.7, maxWidth: "460px" }}>
-                <p style={{ marginBottom: "14px" }}>Everyone has seen that moment.</p>
-                <p style={{ marginBottom: "14px" }}>Something finally calms down.</p>
-                <p style={{ marginBottom: "14px" }}>Five minutes later everything falls apart.</p>
-                <p style={{ marginBottom: "24px", color: "#f5c400", fontWeight: 700, fontSize: "1.3rem", fontFamily: "'Righteous', sans-serif" }}>Here We Go Again.</p>
-                <p style={{ color: "rgba(255,245,228,0.65)" }}>
-                  $AGAIN is a Solana memecoin built around the world&#39;s favorite reaction whenever another breaking news notification arrives.
-                </p>
+              <div style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1.25rem", color: "rgba(255,245,228,0.8)", lineHeight: 1.8, marginBottom: "32px" }}>
+                <p style={{ marginBottom: "10px" }}>Everyone has seen that moment.</p>
+                <p style={{ marginBottom: "10px" }}>Something finally calms down.</p>
+                <p style={{ marginBottom: "10px" }}>Five minutes later everything falls apart.</p>
+                <p style={{ color: "#f5c400", fontWeight: 700, fontSize: "1.4rem", fontFamily: "'Righteous', sans-serif", marginTop: "20px" }}>Here We Go Again.</p>
               </div>
 
-              <div style={{ marginTop: "28px", borderLeft: "4px solid #ff6b00", paddingLeft: "16px", background: "linear-gradient(90deg, rgba(255,107,0,0.07), transparent)", padding: "12px 16px 12px" }}>
-                <div style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "#ff6b00", letterSpacing: "0.2em", marginBottom: "6px" }}>UPDATE</div>
-                <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600, fontSize: "1rem", color: "rgba(255,245,228,0.75)" }}>No roadmap. No promises. Just another day on the internet.</p>
-              </div>
-            </div>
-          </div>
+              <p style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 500, fontSize: "1.05rem", color: "rgba(255,245,228,0.55)", lineHeight: 1.7, marginBottom: "36px", borderLeft: "3px solid rgba(255,107,0,0.5)", paddingLeft: "16px" }}>
+                $AGAIN is a Solana memecoin built around the world&#39;s favorite reaction whenever another breaking news notification arrives. No roadmap. No promises.
+              </p>
 
-          {/* Broadcast data panel */}
-          <div style={{ flex: "0 1 300px" }}>
-            <div style={{
-              background: "linear-gradient(135deg, rgba(107,0,204,0.12), rgba(13,7,18,0.9))",
-              border: "1px solid rgba(107,0,204,0.35)",
-              padding: "24px",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.6rem", color: "rgba(255,245,228,0.4)", letterSpacing: "0.2em", textTransform: "uppercase" }}>Radar &#xB7; Live</span>
-                <RadarSVG/>
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                <a href={BUY_URL} target="_blank" className="btn-gta btn-gold">Buy Now</a>
+                <a href={X_URL} target="_blank" className="btn-gta btn-purple" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                  <SiX size={12}/> Community
+                </a>
               </div>
-              <div style={{ height: "1px", background: "linear-gradient(90deg, rgba(107,0,204,0.4), transparent)", marginBottom: "16px" }}/>
-              {[
-                { k: "STATUS",   v: "ACTIVE",        c: "#39ff14" },
-                { k: "CHAIN",    v: "SOLANA",         c: "#a78bfa" },
-                { k: "SUPPLY",   v: "1,000,000,000",  c: "#f5c400" },
-                { k: "TAX",      v: "0%",             c: "#39ff14" },
-                { k: "CA",       v: CA.slice(0,10)+"...", c: "#ff6b00" },
-              ].map((r, i) => (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(107,0,204,0.1)" }}>
-                  <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>{r.k}</span>
-                  <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.68rem", color: r.c, fontWeight: 700 }}>{r.v}</span>
-                </div>
-              ))}
-              <div style={{ marginTop: "16px", background: "rgba(57,255,20,0.04)", border: "1px solid rgba(57,255,20,0.15)", padding: "10px", fontFamily: "'Courier Prime', monospace", fontSize: "0.6rem", color: "rgba(57,255,20,0.65)", lineHeight: 1.7 }}>
-                &#9654; FEED ACTIVE<br/>
-                &#9654; CHAIN: SOLANA<br/>
-                &#9654; SIGNAL: STRONG<br/>
-                &#9654; {utcTime}
-              </div>
-              <a href={BUY_URL} target="_blank" className="btn-gta btn-gold" style={{ marginTop: "16px", width: "100%", display: "block", textAlign: "center", fontSize: "0.95rem", padding: "11px 0" }}>
-                Buy Now
-              </a>
             </div>
-          </div>
         </div>
       </section>
 
@@ -665,7 +604,6 @@ export default function Home() {
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
             <span className="live-dot"/>
             <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700, textTransform: "uppercase" }}>Live Updates</span>
-            <span className="badge-dev" style={{ marginLeft: "8px" }}>Developing</span>
           </div>
           <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(2.5rem,7vw,5rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "48px", WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}>
             <span style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>SITUATION </span>
@@ -729,8 +667,6 @@ export default function Home() {
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
             <span className="live-dot"/>
             <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.62rem", color: "#cc0000", letterSpacing: "0.25em", fontWeight: 700 }}>LIVE FEED</span>
-            <span className="badge-update" style={{ marginLeft: "8px" }}>MARKETS</span>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.45)", marginLeft: "auto" }}>UTC +0</span>
           </div>
           <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(2.5rem,7vw,5rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "28px", WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}>
             <span style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>THE </span>
@@ -746,15 +682,9 @@ export default function Home() {
             overflow: "hidden",
           }}>
             {/* Frame header */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 16px", background: "rgba(0,0,0,0.5)", borderBottom: "1px solid rgba(245,196,0,0.15)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span className="badge-live">Live Market</span>
-                <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(255,245,228,0.35)" }}>$AGAIN / USD</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <span className="badge-cam">CAM 02</span>
-                <RadarSVG/>
-              </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px", background: "rgba(0,0,0,0.5)", borderBottom: "1px solid rgba(245,196,0,0.15)" }}>
+              <span className="live-dot"/>
+              <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(255,245,228,0.4)", letterSpacing: "0.15em" }}>$AGAIN / USD</span>
             </div>
             <div dangerouslySetInnerHTML={{ __html: `<style>#dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}@media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}#dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}</style><div id="dexscreener-embed"><iframe src="https://dexscreener.com/solana/HTWiEMpyyqRmA4o3jGioqMCtKXN8Ca5WGogUT1PYZP64?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe></div>` }}/>
           </div>
@@ -775,7 +705,6 @@ export default function Home() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 5 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
             <span className="badge-breaking">Archive</span>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>Situation Report &#xB7; Latest Evidence</span>
           </div>
           <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(3rem,9vw,7rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "12px", WebkitTextStroke: "3px rgba(0,0,0,0.3)" }}>
             <span style={{ color: "#fff5e4", textShadow: "4px 4px 0 rgba(0,0,0,0.4)" }}>LATEST </span>
@@ -792,12 +721,10 @@ export default function Home() {
                 position: "relative",
                 transition: "border-color 0.3s ease, box-shadow 0.3s ease",
               }}>
-                {/* Tags */}
-                <div style={{ position: "absolute", top: "10px", right: "10px", zIndex: 3, display: "flex", gap: "4px" }}>
+                {/* Tag */}
+                <div style={{ position: "absolute", top: "10px", right: "10px", zIndex: 3 }}>
                   <span className={tagClass[item.tag] || "badge-update"}>{item.tag}</span>
-                  <span className="badge-cam">{item.cam}</span>
                 </div>
-                <div style={{ position: "absolute", top: "10px", left: "10px", zIndex: 3, fontFamily: "'Courier Prime', monospace", fontSize: "0.52rem", color: "rgba(255,245,228,0.45)", background: "rgba(0,0,0,0.6)", padding: "2px 6px" }}>09:{(14 + i * 7).toString().padStart(2,"0")} UTC</div>
 
                 {/* Image */}
                 <div style={{ aspectRatio: "4/3", overflow: "hidden", background: "#080410" }}>
@@ -834,7 +761,6 @@ export default function Home() {
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 5 }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
             <span className="badge-update">The Play</span>
-            <span style={{ fontFamily: "'Courier Prime', monospace", fontSize: "0.58rem", color: "rgba(138,122,154,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>Acquisition Protocol</span>
           </div>
           <h2 style={{ fontFamily: "'Righteous', sans-serif", fontSize: "clamp(2.5rem,7vw,5.5rem)", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "56px", WebkitTextStroke: "2px rgba(0,0,0,0.3)" }}>
             <div style={{ color: "#fff5e4", textShadow: "3px 3px 0 rgba(0,0,0,0.4)" }}>GET IN</div>
